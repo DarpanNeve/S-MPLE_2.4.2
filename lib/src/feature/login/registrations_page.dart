@@ -71,7 +71,7 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
                 color: Theme.of(context).colorScheme.primaryContainer,
                 margin:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-                elevation: 05,
+                //elevation: 05,
                 child: Form(
                   key: _formKey,
                   child: Padding(

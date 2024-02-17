@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                 key: _formKey,
                 child: Card(
                   margin: const EdgeInsets.symmetric(horizontal: 30),
-                  elevation: 20,
+                  //elevation: 20,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(11),
                   ),

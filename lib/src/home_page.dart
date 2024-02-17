@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:medi_connect/src/screens/appointmentscreen.dart';
 import 'package:medi_connect/src/screens/hospitalscreen.dart';
+import 'package:medi_connect/src/screens/profile_page.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -11,39 +13,78 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0; // Index of the selected tab
-
-  // List of tabs/pages
+  int _selectedIndex = 0;
+  final currentUser = FirebaseAuth.instance.currentUser;
   final List<Widget> _tabs = [
-    // Replace these with your actual pages/screens
-    HospitalScreen(), // Hospital screen
-    AppointmentScreen(), // Appointment Tracking screen
-    Placeholder(), // Emergency Assistance screen
+    const HospitalScreen(),
+    const AppointmentScreen(),
+    const Placeholder(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _tabs[_selectedIndex], // Display the selected tab/page
+      appBar: AppBar(
+        title: const Text('Medi Connect'),
+        actions:[
+          if (currentUser != null && currentUser!.photoURL != null)
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProfilePage(),
+                  ),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    currentUser!.photoURL!,
+                  ),
+                ),
+              ),
+            )
+          else
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProfilePage(),
+                  ),
+                );
+              },
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.person,
+                  size: 30,
+                ),
+              ),
+            ),
+        ],
+      ),
+      body: _tabs[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: (index) {
-          // Update the selected tab index when a tab is tapped
           setState(() {
             _selectedIndex = index;
           });
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.local_hospital), // Medical Records icon
+            icon: Icon(Icons.local_hospital),
             label: 'Hospitals',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.event), // Appointment Tracking icon
+            icon: Icon(Icons.event),
             label: 'Appointments',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.sos), // Emergency Assistance icon
+            icon: Icon(Icons.sos),
             label: 'Emergency',
           ),
         ],
