@@ -133,6 +133,7 @@ class _LoginPageState extends State<LoginPage> {
                               const SizedBox(
                                 width: 10,
                               ),
+
                               Text(
                                 'Google',
                                 style: Theme.of(context).textTheme.bodyMedium,
