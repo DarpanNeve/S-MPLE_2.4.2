@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
-import '../doctor_chat/book_appointment.dart';
+import '../appointments/book_appointment.dart';
 import 'bloc/map_bloc.dart';
 import 'hospital_model.dart';
 

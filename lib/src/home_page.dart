@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:medi_connect/src/screens/doctor_chat/appointment_screen.dart';
+import 'package:medi_connect/src/screens/appointments/appointment_screen.dart';
 import 'package:medi_connect/src/screens/emergency_screen.dart';
 import 'package:medi_connect/src/screens/map/hospital_locator.dart';
 import 'package:medi_connect/src/screens/map/nearby_hospital.dart';

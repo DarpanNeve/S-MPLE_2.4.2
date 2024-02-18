@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medi_connect/src/screens/doctor_chat/contact_doctor.dart';
 
 import '../../constants/appointments.dart';
 import 'book_appointment.dart';
@@ -21,23 +22,47 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-        label: const Text('Add Appointment'),
-        onPressed: () async {
-          final appointment = await Navigator.of(context).push<Appointment>(
-            MaterialPageRoute(
-              builder: (context) {
-                return const BookAppointmentScreen();
-              },
-            ),
-          );
-          if (appointment != null) {
-            setState(() {
-              scheduledAppointments.add(appointment);
-            });
-          }
-        },
-        icon: const Icon(Icons.add),
+      floatingActionButton:
+      Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          FloatingActionButton.extended(
+            label: const Text('Add Appointment'),
+            onPressed: () async {
+              final appointment = await Navigator.of(context).push<Appointment>(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const BookAppointmentScreen();
+                  },
+                ),
+              );
+              if (appointment != null) {
+                setState(() {
+                  scheduledAppointments.add(appointment);
+                });
+              }
+            },
+            icon: const Icon(Icons.add),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.02,
+          ),
+
+          FloatingActionButton.extended(
+            label: const Text('Call a doctor'),
+            onPressed: () async {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const ContactDoctor();
+                  },
+                ),
+              );
+            },
+            icon: const Icon(Icons.call),
+          ),
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
