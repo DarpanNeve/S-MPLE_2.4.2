@@ -9,6 +9,7 @@ class BookAppointmentScreen extends StatefulWidget {
   @override
   _BookAppointmentScreenState createState() => _BookAppointmentScreenState();
 }
+Timestamp _selectedDateToTimestamp=Timestamp.now();
 
 class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   DateTime? _selectedDate;
@@ -30,6 +31,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   ];
 
   Future<void> _selectDate(BuildContext context) async {
+
     final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -40,6 +42,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
     if (pickedDate != null && pickedDate != _selectedDate) {
       setState(() {
         _selectedDate = pickedDate;
+        _selectedDateToTimestamp=Timestamp.fromDate(pickedDate);
       });
     }
   }

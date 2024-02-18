@@ -25,7 +25,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
         final List<Hospital> hospitals = [];
 
         final snapshot = await FirebaseDatabase.instance.ref('hospitals').get();
-
+        print(snapshot.value);
         if (snapshot.value != null && snapshot.value is Map<dynamic, dynamic>) {
           final map = snapshot.value as Map<dynamic, dynamic>;
 

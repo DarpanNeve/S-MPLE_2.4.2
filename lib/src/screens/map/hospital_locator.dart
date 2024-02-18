@@ -1,8 +1,10 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+
 import 'bloc/map_bloc.dart';
 import 'hospital_model.dart';
 
@@ -33,6 +35,7 @@ class _MyAppState extends State<map> {
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,29 +43,43 @@ class _MyAppState extends State<map> {
         builder: (context, state) {
           if (state is MapLoaded) {
             return GoogleMap(
-              onMapCreated: _onMapCreated,
-              initialCameraPosition: CameraPosition(
-                target: state.location,
-                zoom: 11.0,
-              ),
-              myLocationEnabled: true,
-              markers: Set<Marker>.of(
-                state.hospitals.map((Hospital hospital) {
-                  return Marker(
-                    markerId: MarkerId(hospital.name),
-                    position: LatLng(hospital.latitude, hospital.longitude),
+                onMapCreated: _onMapCreated,
+                initialCameraPosition: CameraPosition(
+                  target: state.location,
+                  zoom: 11.0,
+                ),
+                myLocationEnabled: true,
+                markers: {
+                  Marker(
+                    markerId: MarkerId('Dhanwantari Hospital Nigdi'),
+                    position: LatLng(18.65586645, 73.76812952),
                     onTap: () {
                       _showHospitalInfoBottomSheet(context, state.hospitals);
                     },
-                    infoWindow: InfoWindow(
-                      title: hospital.name,
-                      snippet: 'Rating: ${hospital.reviews}',
-                    ),
-                    icon: BitmapDescriptor.defaultMarker,
-                  );
-                }),
-              ),
-            );
+                  ),
+                  Marker(
+                    markerId: MarkerId(
+                        'PDEA\'s Ayurveda Rugnalaya & Sterling Multi Speciality Hospital ARSMH'),
+                    position: LatLng(18.6548547, 73.7696807),
+                    onTap: () {
+                      _showHospitalInfoBottomSheet(context, state.hospitals);
+                    },
+                  ),
+                  Marker(
+                    markerId: MarkerId('Diwan Hospital Pune'),
+                    position: LatLng(18.6579111, 73.7762953),
+                    onTap: () {
+                      _showHospitalInfoBottomSheet(context, state.hospitals);
+                    },
+                  ),
+                  Marker(
+                    markerId: MarkerId('Aditi Multispeciality Hospital'),
+                    position: LatLng(18.6561789, 73.77319634),
+                    onTap: () {
+                      _showHospitalInfoBottomSheet(context, state.hospitals);
+                    },
+                  )
+                });
           }
           if(state is MapLoading){
             return Center(

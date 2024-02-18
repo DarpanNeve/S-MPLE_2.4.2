@@ -1,6 +1,4 @@
-
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,7 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:medi_connect/src/feature/login/auth_service.dart';
 import 'package:medi_connect/src/screens/profile/report_model.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -20,7 +18,6 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   List<Report> reports = [];
   final currentUser = FirebaseAuth.instance.currentUser;
-
   Future<void> retrieveAndPrintData() async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection("report_upload")
@@ -61,14 +58,14 @@ class _ProfilePageState extends State<ProfilePage> {
       uploadTask.whenComplete(() async {
         String url = await ref.getDownloadURL();
         print(url);
-        _addDataToFirestore(url);
+        _addDataToFirestore(url, fileName);
       });
     } else {
       // User canceled the picker
     }
   }
 
-  _addDataToFirestore(String url) async {
+  _addDataToFirestore(String url, String fileName) async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     firestore
         .collection("report_upload")
@@ -77,7 +74,7 @@ class _ProfilePageState extends State<ProfilePage> {
         .add(
       {
         "file location": url,
-        "title": "Report",
+        "title": fileName,
         "timestamp": FieldValue.serverTimestamp(),
       },
     );
@@ -158,25 +155,17 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: reports
                     .map(
                       (e) => ListTile(
-                    leading: Icon(Icons.picture_as_pdf),
-                    title: Text(e.title),
-                    onTap: () async {
-
-                          // FileDownloader.downloadFile(url: e.url,
-                          //   onDownloadCompleted: (value) {
-                          //     print('Downloaded');
-                          //   },
-                          // );
-                      // if (await canLaunchUrlString(url)) {
-                      //   Uri uri = Uri.parse(url);
-                      //   print(url);
-                      //   await launchUrl(uri, mode: LaunchMode.externalApplication);
-                      // } else {
-                      //   throw 'Could not launch ${e.url}';
-                      // }
-                    },
-                  ),
-                )
+                        leading: Icon(Icons.picture_as_pdf),
+                        title: Text(e.title),
+                        onTap: () async {
+                          if (await canLaunchUrl(Uri.parse(e.url))) {
+                            await launchUrl(Uri.parse(e.url));
+                          } else {
+                            throw 'Could not launch $e.url';
+                          }
+                        },
+                      ),
+                    )
                     .toList(),
               ),
             )
