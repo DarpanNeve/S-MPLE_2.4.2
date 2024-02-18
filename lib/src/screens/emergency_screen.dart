@@ -1,14 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class EmergencyScreen extends StatelessWidget {
-  const EmergencyScreen({super.key});
+  const EmergencyScreen({Key? key}) : super(key: key);
+
+  // Method to handle notifying family members
+  void _notifyFamily(BuildContext context) {
+    // Add your logic here to send the emergency message to family members
+    // For example, you can use a service or API to send SMS or push notifications
+    // You can also implement a dialog or confirmation message to inform the user that the message has been sent
+    // Replace this placeholder code with your actual implementation
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Emergency message sent to family members.'),
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Emergency Assistance'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Emergency Assistance'),
+      // ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -33,17 +48,44 @@ class EmergencyScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 40),
-            ElevatedButton(
-              onPressed: () {
-                // Navigate to first aid information screen
-              },
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+            const SizedBox(height: 20),
+            Text(
+              'First Aid Video',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary),
+            ),
+            const SizedBox(height: 10),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Theme.of(context).colorScheme.primary),
+                borderRadius: BorderRadius.circular(10),
               ),
-              child: const Text(
-                'First Aid Information',
-                style: TextStyle(fontSize: 18),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Expanded(
+                  child: YoutubePlayer(
+                    controller: YoutubePlayerController(
+                      initialVideoId: 'XjMvBW9KDLA',
+                      flags: YoutubePlayerFlags(
+                        autoPlay: true,
+                        mute: false,
+                        forceHD: false,
+                      ),
+                    ),
+                    showVideoProgressIndicator: true,
+                    onReady: () {
+                      // Listener for player ready
+                    },
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  _notifyFamily(context); // Call method to notify family members
+                },
+                child: Text("Notify Family"),
               ),
             ),
           ],
