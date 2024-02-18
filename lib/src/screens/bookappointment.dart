@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../constants/appointments.dart';
 
+
 class BookAppointmentScreen extends StatefulWidget {
   final Function(Appointment) onAppointmentBooked;
 
