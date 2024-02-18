@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../widget/snackbar.dart';
@@ -143,22 +144,27 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                 ),
               ),
             const SizedBox(height: 16.0),
-            DropdownButtonFormField<String>(
-              value: _selectedHospital,
-              onChanged: (newValue) {
-                setState(() {
-                  _selectedHospital = newValue;
-                });
-              },
-              items: hospitals.map((hospital) {
-                return DropdownMenuItem<String>(
-                  value: hospital,
-                  child: Text(hospital),
-                );
-              }).toList(),
-              decoration: const InputDecoration(
-                labelText: 'Select Hospital',
-                border: OutlineInputBorder(),
+            Container(
+              child: DropdownButtonFormField<String>(
+                isExpanded: true,
+                value: _selectedHospital,
+                onChanged: (newValue) {
+                  setState(() {
+                    _selectedHospital = newValue;
+                  });
+                },
+                items: hospitals.map((hospital) {
+                  return DropdownMenuItem<String>(
+                    value: hospital,
+                    child: Text(hospital,
+                      overflow:TextOverflow.ellipsis,
+                    ),
+                  );
+                }).toList(),
+                decoration: const InputDecoration(
+                  labelText: 'Select Hospital',
+                  border: OutlineInputBorder(),
+                ),
               ),
             ),
             const SizedBox(height: 16.0),
