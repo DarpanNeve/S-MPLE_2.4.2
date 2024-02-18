@@ -19,15 +19,15 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   String? _selectedHospital;
 
   final List<String> hospitals = [
-    'Hospital A',
-    'Hospital B',
-    'Hospital C',
+    'Dhanwantari Hospital Nigdi',
+    'PDEAs Ayurveda Rugnalaya & Sterling Multi Speciality Hospital ARSMH',
+    'Diwan Hospital Pune',
   ];
 
   final List<String> doctors = [
-    'Dr. John Doe',
-    'Dr. Jane Smith',
-    'Dr. Michael Johnson',
+    'Dr. Sandeep Vaishya',
+    'Dr. Naresh Trehan',
+    'Dr. Aditya Gupta',
   ];
 
   Future<void> _selectDate(BuildContext context) async {

@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../constants/appointments.dart';
 import 'book_appointment.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import '../../constants/appointments.dart';
+import 'book_appointment.dart';
+
 class AppointmentScreen extends StatefulWidget {
   const AppointmentScreen({Key? key});
 
