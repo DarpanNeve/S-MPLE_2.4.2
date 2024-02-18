@@ -25,7 +25,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
           '?location=${locationData.latitude},${locationData.longitude}'
           '&radius=$radius'
           '&type=$type'
-          '&key=insert api key here';
+          '&key=${FlutterConfig.get('GOOGLE_MAP')}';
 
       List<LatLng> hospitals = [];
       emit(MapLoaded(LatLng(locationData.latitude!, locationData.longitude!), hospitals));

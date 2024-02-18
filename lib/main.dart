@@ -2,8 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:medi_connect/src/feature/login/auth_service.dart';
-import 'package:medi_connect/src/screens/map/hospital_locator.dart';
-
 import 'firebase_options.dart';
 import 'package:location/location.dart';
 void main() async{
