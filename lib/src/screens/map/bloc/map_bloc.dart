@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 import 'package:location/location.dart';
 import 'package:equatable/equatable.dart';

@@ -1,13 +1,13 @@
 
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:medi_connect/src/feature/login/auth_service.dart';
-
+import 'package:medi_connect/src/screens/profile/report_model.dart';
+import 'package:firebase_database/firebase_database.dart';
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -16,8 +16,21 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
+  List<Report> reports = [];
   final currentUser = FirebaseAuth.instance.currentUser;
+  final uid = FirebaseAuth.instance.currentUser!.uid;
+  void fetchReports() async {
+    final snapshot =
+    await FirebaseFirestore.instance.collection('Report_Upload').doc(uid).get();
+    if (snapshot.exists) {
+
+    }
+
+  }
+  initState() {
+    super.initState();
+    fetchReports();
+  }
   _pickPDF() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
@@ -39,8 +52,9 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   _addDataToFirestore(String url) async {
+    final timestamp = DateTime.now().millisecondsSinceEpoch.toString();
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    firestore.collection("Report_Upload").doc(currentUser!.uid).set(
+    firestore.collection("Report_Upload").doc(currentUser!.uid).collection('reports').add(
       {
         "file location": url,
         "title": "Report",
