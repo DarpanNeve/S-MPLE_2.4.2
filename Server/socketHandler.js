@@ -3,7 +3,7 @@ const handleConnection = (socket) => {
   console.log(`${socket.user} connected`);
 
   socket.join(socket.user);
-
+  socket.emit("message", "Hello from server");
   socket.on("makeCall", async (data) => {
     try {
       const { calleeId, sdpOffer } = data;
@@ -14,6 +14,12 @@ const handleConnection = (socket) => {
     } catch (error) {
       console.error("Error in makeCall:", error);
     }
+  });
+  socket.on("error", (error) => {
+    console.error("Socket error:", error);
+  });
+  socket.on("disconnect", () => {
+    console.log(`${socket.user} disconnected`);
   });
 
   socket.on("answerCall", async (data) => {
@@ -40,5 +46,4 @@ const handleConnection = (socket) => {
     }
   });
 };
-
 module.exports = { handleConnection };

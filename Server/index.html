@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.io Client</title>
+</head>
+
+<body>
+    <h1>Socket.io Client</h1>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
+    <script>
+        // Connect to the WebSocket server
+        const socket = io();
+
+        // Send 'hello' message to the server when connected
+        socket.on('connect', () => {
+            console.log('Connected to server');
+            // You can emit any events you want here
+            socket.emit('hello', 'Hello from client!');
+        });
+        console.log('Client-side script loaded');
+
+        // Receive 'message' event from the server
+        socket.on('message', (data) => {
+            console.log('Received message from server:', data);
+        });
+    </script>
+</body>
+
+</html>

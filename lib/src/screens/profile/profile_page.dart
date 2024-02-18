@@ -1,4 +1,5 @@
-import 'dart:typed_data';
+
+import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,23 +15,26 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final currentUser = FirebaseAuth.instance.currentUser;
 
-  Future<void> _pickPDF() async {
+  final currentUser = FirebaseAuth.instance.currentUser;
+  _pickPDF() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.any,
+      type: FileType.custom,
       allowedExtensions: ['pdf'],
     );
-
     if (result != null) {
-      Uint8List? fileBytes = result.files.first.bytes;
-      String fileName = result.files.first.name;
-      await FirebaseStorage.instance
-          .ref('Records/${FirebaseAuth.instance.currentUser!.uid}/$fileName')
-          .putData(fileBytes!);
+      File file = File(result.files.single.path!);
+      String fileName = file.path.split('/').last;
+      Reference ref = FirebaseStorage.instance.ref().child("Reports/${currentUser!.uid}").child('${fileName}.pdf');
+      UploadTask uploadTask = ref.putFile(file);
+      uploadTask.whenComplete(() async {
+        String url = await ref.getDownloadURL();
+        print(url);
+      });
+    } else {
+      // User canceled the picker
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

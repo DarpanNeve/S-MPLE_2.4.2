@@ -4,7 +4,7 @@ const http = require("http");
 const socketIo = require("socket.io");
 const { handleConnection } = require("./socketHandler");
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 80;
 
 const app = express();
 const server = http.createServer(app);
@@ -14,7 +14,7 @@ const io = socketIo(server, {
     methods: ["GET", "POST"],
   },
 });
-
+app.use(express.static(__dirname));
 io.use((socket, next) => {
   if (socket.handshake.query && socket.handshake.query.callerId) {
     socket.user = socket.handshake.query.callerId;
