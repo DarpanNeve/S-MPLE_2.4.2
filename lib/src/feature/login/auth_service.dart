@@ -24,10 +24,7 @@ class AuthService {
           // );
           if (FirebaseAuth.instance.currentUser!.emailVerified) {
             checkIsAdmin();
-            return BlocProvider(
-              create: (context) => MapBloc()..add(MapLoad()),
-              child:const  HomeScreen(),
-            );
+            return const  HomeScreen();
           } else {
             signOutWithoutSnackBar();
             sendVerificationEmail(context);

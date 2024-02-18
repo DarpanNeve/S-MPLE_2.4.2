@@ -4,9 +4,11 @@ import '../../constants/appointments.dart';
 
 
 class BookAppointmentScreen extends StatefulWidget {
-  final Function(Appointment) onAppointmentBooked;
+  // final Function(Appointment) onAppointmentBooked;
 
-  const BookAppointmentScreen({super.key, required this.onAppointmentBooked});
+  const BookAppointmentScreen({super.key,
+    // required this.onAppointmentBooked
+  });
 
   @override
   _BookAppointmentScreenState createState() => _BookAppointmentScreenState();
@@ -75,7 +77,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
       );
 
       // Invoke the callback function with the new appointment
-      widget.onAppointmentBooked(newAppointment);
+      // widget.onAppointmentBooked(newAppointment);
 
       // Reset fields after submission
       setState(() {

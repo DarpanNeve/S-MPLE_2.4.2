@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:medi_connect/src/screens/doctor_chat/appointment_screen.dart';
 import 'package:medi_connect/src/screens/emergency_screen.dart';
 import 'package:medi_connect/src/screens/map/hospital_locator.dart';
+import 'package:medi_connect/src/screens/map/nearby_hospital.dart';
 import 'package:medi_connect/src/screens/profile/profile_page.dart';
 
 
@@ -17,7 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final currentUser = FirebaseAuth.instance.currentUser;
   final List<Widget> _tabs = [
-    map(),
+    // map(),
+    const NearbyHospital(),
     const AppointmentScreen(),
     const EmergencyScreen(),
   ];

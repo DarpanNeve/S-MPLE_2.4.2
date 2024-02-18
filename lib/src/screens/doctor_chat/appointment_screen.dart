@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'book_appointment.dart';
+
 class AppointmentScreen extends StatelessWidget {
   const AppointmentScreen({super.key});
 
@@ -10,6 +12,14 @@ class AppointmentScreen extends StatelessWidget {
         label: const Text('Add Appointment'),
         onPressed: () {
           // Handle adding a new appointment
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return const BookAppointmentScreen();
+                // return const BookAppointmentScreen(onAppointmentBooked: ,);
+              },
+            ),
+          );
         },
         icon: const Icon(Icons.add),
       ),
