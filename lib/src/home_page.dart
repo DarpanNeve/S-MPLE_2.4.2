@@ -18,8 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final currentUser = FirebaseAuth.instance.currentUser;
   final List<Widget> _tabs = [
-    // map(),
-    const NearbyHospital(),
+    map(),
+    // NearbyHospital(),
     const AppointmentScreen(),
     const EmergencyScreen(),
   ];

@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:medi_connect/src/home_page.dart';
+
+import '../../screens/login/login_page.dart';
 import '../../screens/map/bloc/map_bloc.dart';
 import '../../widget/snackbar.dart';
-import '../../screens/login/login_page.dart';
 import '../user_info_update.dart';
 
 class AuthService {
@@ -24,7 +25,11 @@ class AuthService {
           // );
           if (FirebaseAuth.instance.currentUser!.emailVerified) {
             checkIsAdmin();
-            return const  HomeScreen();
+            checkIsAdmin();
+            return BlocProvider(
+              create: (context) => MapBloc()..add(MapLoad()),
+              child: const HomeScreen(),
+            );
           } else {
             signOutWithoutSnackBar();
             sendVerificationEmail(context);

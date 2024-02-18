@@ -1,7 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants/appointments.dart';
-
+import '../../widget/snackbar.dart';
 
 class BookAppointmentScreen extends StatefulWidget {
   // final Function(Appointment) onAppointmentBooked;
@@ -61,20 +61,20 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
     }
   }
 
-  void _submitAppointment() {
+  void _submitAppointment() async {
     // Validate and submit appointment
     if (_selectedDate != null &&
         _selectedTime != null &&
         _selectedDoctor != null &&
         _selectedHospital != null &&
         _appointmentReason.isNotEmpty) {
-      Appointment newAppointment = Appointment(
-        date: _selectedDate!,
-        time: _selectedTime!,
-        doctor: _selectedDoctor!,
-        hospital: _selectedHospital!,
-        reason: _appointmentReason,
-      );
+      await FirebaseFirestore.instance.collection('appointments').doc(DateTime.now().millisecondsSinceEpoch.toString()).set({
+        'date': _selectedDate,
+        'time': _selectedTime,
+        'doctor': _selectedDoctor,
+        'hospital': _selectedHospital,
+        'reason': _appointmentReason,
+      });
 
       // Invoke the callback function with the new appointment
       // widget.onAppointmentBooked(newAppointment);
@@ -93,6 +93,8 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
     } else {
       // Handle validation errors or missing information
       // Show error message or prompt user to fill all fields
+      showSnackBar(
+          "Please fill complete data", context, Icons.error, Colors.red);
     }
   }
 
