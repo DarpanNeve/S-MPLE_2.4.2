@@ -10,7 +10,6 @@ class BookAppointmentScreen extends StatefulWidget {
   @override
   _BookAppointmentScreenState createState() => _BookAppointmentScreenState();
 }
-Timestamp _selectedDateToTimestamp=Timestamp.now();
 
 class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   DateTime? _selectedDate;
@@ -43,7 +42,6 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
     if (pickedDate != null && pickedDate != _selectedDate) {
       setState(() {
         _selectedDate = pickedDate;
-        _selectedDateToTimestamp=Timestamp.fromDate(pickedDate);
       });
     }
   }
@@ -53,6 +51,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
       context: context,
       initialTime: TimeOfDay.now(),
     );
+
 
     if (pickedTime != null && pickedTime != _selectedTime) {
       setState(() {
@@ -67,7 +66,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
         _selectedDoctor != null &&
         _selectedHospital != null &&
         _appointmentReason.isNotEmpty) {
-      final DateTime combinedDateTime = DateTime(
+      final DateTime combinedDateTime =await DateTime(
         _selectedDate!.year,
         _selectedDate!.month,
         _selectedDate!.day,
@@ -75,11 +74,9 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
         _selectedTime!.minute,
       );
 
-      final int appointmentTimestamp = combinedDateTime.millisecondsSinceEpoch;
+      Timestamp appointmentTimestamp = Timestamp.fromDate(combinedDateTime);
 
       await FirebaseFirestore.instance.collection('appointments').doc(appointmentTimestamp.toString()).set({
-        'date': _selectedDate,
-        'time': _selectedTime,
         'doctor': _selectedDoctor,
         'hospital': _selectedHospital,
         'reason': _appointmentReason,

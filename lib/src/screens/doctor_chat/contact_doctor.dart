@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medi_connect/src/feature/video_call/join_screen.dart';
-import 'package:medi_connect/src/screens/doctor_chat/dummy_doctor_list.dart';
+import 'package:medi_connect/src/constants/dummy_doctor_list.dart';
 
 class ContactDoctor extends StatelessWidget {
   const ContactDoctor({super.key});
