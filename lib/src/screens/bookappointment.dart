@@ -66,7 +66,6 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
         _selectedDoctor != null &&
         _selectedHospital != null &&
         _appointmentReason.isNotEmpty) {
-      // Create a new Appointment object
       Appointment newAppointment = Appointment(
         date: _selectedDate!,
         time: _selectedTime!,
