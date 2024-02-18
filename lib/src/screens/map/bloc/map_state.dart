@@ -15,7 +15,8 @@ class MapLoading extends MapState{
 }
 class MapLoaded extends MapState{
   final LatLng location;
-  MapLoaded(this.location);
+  final List<LatLng> nearbyHospitals;
+  MapLoaded(this.location,this.nearbyHospitals);
   @override
-  List<Object?> get props => [location];
+  List<Object?> get props => [location, nearbyHospitals];
 }
