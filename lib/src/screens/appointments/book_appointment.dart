@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:medi_connect/src/feature/fcm/notification.dart';
 
 import '../../widget/snackbar.dart';
 
@@ -84,7 +85,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
         'timestamp': appointmentTimestamp,
         'uid':FirebaseAuth.instance.currentUser!.uid,
       });
-
+      await scheduleNotification(combinedDateTime);
       setState(() {
         _selectedDate = null;
         _selectedTime = null;
