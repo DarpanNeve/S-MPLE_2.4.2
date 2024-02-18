@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:medi_connect/src/utils/theme.dart';
 
 
@@ -15,17 +14,6 @@ ThemeData darkTheme=ThemeData.dark().copyWith(
   ),
   iconTheme: ThemeData.dark().iconTheme.copyWith(
     color: kDarkColorScheme.onPrimaryContainer,
-  ),
-  textTheme: ThemeData.dark().textTheme.copyWith(
-    titleSmall: GoogleFonts.ubuntuCondensed(
-      fontWeight: FontWeight.bold,
-    ),
-    titleMedium: GoogleFonts.ubuntuCondensed(
-      fontWeight: FontWeight.bold,
-    ),
-    titleLarge: GoogleFonts.ubuntuCondensed(
-      fontWeight: FontWeight.bold,
-    ),
   ),
   dropdownMenuTheme: ThemeData.dark().dropdownMenuTheme.copyWith(
     textStyle: ThemeData.dark().textTheme.bodyMedium,
@@ -46,16 +34,5 @@ ThemeData lightTheme=ThemeData().copyWith(
   ),
   dropdownMenuTheme: ThemeData().dropdownMenuTheme.copyWith(
     textStyle: ThemeData().textTheme.bodyMedium,
-  ),
-  textTheme: ThemeData().textTheme.copyWith(
-    titleSmall: GoogleFonts.ubuntuCondensed(
-      fontWeight: FontWeight.bold,
-    ),
-    titleMedium: GoogleFonts.ubuntuCondensed(
-      fontWeight: FontWeight.bold,
-    ),
-    titleLarge: GoogleFonts.ubuntuCondensed(
-      fontWeight: FontWeight.bold,
-    ),
   ),
 );
