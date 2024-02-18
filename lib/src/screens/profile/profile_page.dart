@@ -1,9 +1,11 @@
 import 'dart:typed_data';
-import 'package:firebase_storage/firebase_storage.dart';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:medi_connect/src/feature/login/auth_service.dart';
-import 'package:file_picker/file_picker.dart';
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -16,16 +18,18 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<void> _pickPDF() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
+      type: FileType.any,
       allowedExtensions: ['pdf'],
     );
 
     if (result != null) {
       Uint8List? fileBytes = result.files.first.bytes;
       String fileName = result.files.first.name;
-      await FirebaseStorage.instance.ref('uploads/$fileName').putData(fileBytes!);
+      await FirebaseStorage.instance
+          .ref('Records/${FirebaseAuth.instance.currentUser!.uid}/$fileName')
+          .putData(fileBytes!);
     }
-    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +38,11 @@ class _ProfilePageState extends State<ProfilePage> {
         title: const Text('Profile'),
         actions: [
           IconButton(
-              onPressed: (){
-                AuthService().signOut(context);
-                Navigator.popUntil(context, (route) => route.isFirst);
-              },
-              icon:const Icon(Icons.logout),
+            onPressed: () {
+              AuthService().signOut(context);
+              Navigator.popUntil(context, (route) => route.isFirst);
+            },
+            icon: const Icon(Icons.logout),
           )
         ],
       ),
@@ -73,30 +77,26 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text("Past Records",
+                Text(
+                  "Past Records",
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
               ],
             ),
           ),
           ElevatedButton(
-              onPressed: (){
-                _pickPDF();
-              },
-              child: const Column(
-                children:  [
-                  Icon(Icons.cloud_upload),
-                  Text("Add Record"),
-                ],
-              ),
-
+            onPressed: () {
+              _pickPDF();
+            },
+            child: const Column(
+              children: [
+                Icon(Icons.cloud_upload),
+                Text("Add Record"),
+              ],
+            ),
           ),
-
-
         ],
       ),
-
-
     );
   }
 }

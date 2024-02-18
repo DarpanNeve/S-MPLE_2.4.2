@@ -29,6 +29,13 @@ class _MyAppState extends State<map> {
                 zoom: 11.0,
               ),
               myLocationEnabled: true,
+              markers: Set<Marker>.of(state.nearbyHospitals.map((LatLng hospital) {
+                return Marker(
+                  markerId: MarkerId(hospital.toString()),
+                  position: hospital,
+                  icon: BitmapDescriptor.defaultMarker,
+                );
+              })),
             );
           }
           return const Center(
