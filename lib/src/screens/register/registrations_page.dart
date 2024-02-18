@@ -144,8 +144,9 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text('Already have an account?'),
                     TextButton(

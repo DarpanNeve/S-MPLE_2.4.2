@@ -4,11 +4,7 @@ import 'package:flutter/material.dart';
 import '../../widget/snackbar.dart';
 
 class BookAppointmentScreen extends StatefulWidget {
-  // final Function(Appointment) onAppointmentBooked;
-
-  const BookAppointmentScreen({super.key,
-    // required this.onAppointmentBooked
-  });
+  const BookAppointmentScreen({Key? key});
 
   @override
   _BookAppointmentScreenState createState() => _BookAppointmentScreenState();
@@ -62,24 +58,30 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   }
 
   void _submitAppointment() async {
-    // Validate and submit appointment
     if (_selectedDate != null &&
         _selectedTime != null &&
         _selectedDoctor != null &&
         _selectedHospital != null &&
         _appointmentReason.isNotEmpty) {
-      await FirebaseFirestore.instance.collection('appointments').doc(DateTime.now().millisecondsSinceEpoch.toString()).set({
+      final DateTime combinedDateTime = DateTime(
+        _selectedDate!.year,
+        _selectedDate!.month,
+        _selectedDate!.day,
+        _selectedTime!.hour,
+        _selectedTime!.minute,
+      );
+
+      final int appointmentTimestamp = combinedDateTime.millisecondsSinceEpoch;
+
+      await FirebaseFirestore.instance.collection('appointments').doc(appointmentTimestamp.toString()).set({
         'date': _selectedDate,
         'time': _selectedTime,
         'doctor': _selectedDoctor,
         'hospital': _selectedHospital,
         'reason': _appointmentReason,
+        'timestamp': appointmentTimestamp,
       });
 
-      // Invoke the callback function with the new appointment
-      // widget.onAppointmentBooked(newAppointment);
-
-      // Reset fields after submission
       setState(() {
         _selectedDate = null;
         _selectedTime = null;
@@ -88,13 +90,14 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
         _appointmentReason = '';
       });
 
-      // Navigate back to the previous screen (HospitalScreen)
       Navigator.pop(context);
     } else {
-      // Handle validation errors or missing information
-      // Show error message or prompt user to fill all fields
-      showSnackBar(
-          "Please fill complete data", context, Icons.error, Colors.red);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Please fill all fields.'),
+          backgroundColor: Colors.red,
+        ),
+      );
     }
   }
 

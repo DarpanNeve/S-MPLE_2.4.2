@@ -1,4 +1,6 @@
+
 import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,6 +20,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   List<Report> reports = [];
   final currentUser = FirebaseAuth.instance.currentUser;
+
   Future<void> retrieveAndPrintData() async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection("report_upload")
@@ -64,6 +67,7 @@ class _ProfilePageState extends State<ProfilePage> {
       // User canceled the picker
     }
   }
+
   _addDataToFirestore(String url) async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     firestore
