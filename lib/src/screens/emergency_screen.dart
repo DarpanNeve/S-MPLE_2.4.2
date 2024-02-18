@@ -4,20 +4,6 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 class EmergencyScreen extends StatelessWidget {
   const EmergencyScreen({Key? key}) : super(key: key);
 
-  // Method to handle notifying family members
-  void _notifyFamily(BuildContext context) {
-    // Add your logic here to send the emergency message to family members
-    // For example, you can use a service or API to send SMS or push notifications
-    // You can also implement a dialog or confirmation message to inform the user that the message has been sent
-    // Replace this placeholder code with your actual implementation
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Emergency message sent to family members.'),
-        duration: Duration(seconds: 2),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,15 +65,12 @@ class EmergencyScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  _notifyFamily(context); // Call method to notify family members
-                },
-                child: Text("Notify Family"),
-              ),
-            ),
+            const SizedBox(height: 10),
+            ElevatedButton(onPressed: () {
+
+            }, child: Text(
+              "Contact Family"
+            ))
           ],
         ),
       ),
