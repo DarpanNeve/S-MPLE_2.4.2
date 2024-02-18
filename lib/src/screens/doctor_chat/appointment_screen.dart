@@ -6,8 +6,12 @@ class AppointmentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Appointments'),
+      floatingActionButton: FloatingActionButton.extended(
+        label: const Text('Add Appointment'),
+        onPressed: () {
+          // Handle adding a new appointment
+        },
+        icon: const Icon(Icons.add),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),

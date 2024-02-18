@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants/appointments.dart';
+import '../../constants/appointments.dart';
 
 
 class BookAppointmentScreen extends StatefulWidget {

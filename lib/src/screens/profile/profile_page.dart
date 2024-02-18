@@ -1,6 +1,7 @@
 
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -30,11 +31,24 @@ class _ProfilePageState extends State<ProfilePage> {
       uploadTask.whenComplete(() async {
         String url = await ref.getDownloadURL();
         print(url);
+        _addDataToFirestore(url);
       });
     } else {
       // User canceled the picker
     }
   }
+
+  _addDataToFirestore(String url) async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    firestore.collection("Report_Upload").doc(currentUser!.uid).set(
+      {
+        "file location": url,
+        "title": "Report",
+        "timestamp": FieldValue.serverTimestamp(),
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,6 +90,17 @@ class _ProfilePageState extends State<ProfilePage> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.05,
           ),
+          ElevatedButton(
+            onPressed: () {
+              _pickPDF();
+            },
+            child: const Column(
+              children: [
+                Icon(Icons.cloud_upload),
+                Text("Add Record"),
+              ],
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -85,17 +110,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   "Past Records",
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
-              ],
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              _pickPDF();
-            },
-            child: const Column(
-              children: [
-                Icon(Icons.cloud_upload),
-                Text("Add Record"),
               ],
             ),
           ),

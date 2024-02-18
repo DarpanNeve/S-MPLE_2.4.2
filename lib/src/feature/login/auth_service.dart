@@ -17,11 +17,22 @@ class AuthService {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasData) {
-          checkIsAdmin();
-          return BlocProvider(
-            create: (context) => MapBloc()..add(MapLoad()),
-            child:const  HomeScreen(),
-          );
+          // checkIsAdmin();
+          // return BlocProvider(
+          //   create: (context) => MapBloc()..add(MapLoad()),
+          //   child:const  HomeScreen(),
+          // );
+          if (FirebaseAuth.instance.currentUser!.emailVerified) {
+            checkIsAdmin();
+            return BlocProvider(
+              create: (context) => MapBloc()..add(MapLoad()),
+              child:const  HomeScreen(),
+            );
+          } else {
+            signOutWithoutSnackBar();
+            sendVerificationEmail(context);
+            return const LoginPage();
+          }
         } else {
           return const LoginPage();
         }

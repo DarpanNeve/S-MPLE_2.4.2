@@ -20,14 +20,11 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       print(" LOCATION $locationData");
       print(locationData.latitude);
       print(locationData.longitude);
-      const radius = 100;
       const type = 'hospital';
       const String _baseUrlNearBySearch =
           "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
       final String _placesApi='${FlutterConfig.get('GOOGLE_MAP')}';
       final String _location = "location=${locationData.latitude},${locationData.longitude}";
-      final String _radius = "radius=$radius";
-      final String _type = "type=$type";
       const rankBy = "&rankby=distance";
       final url =
       Uri.parse(_baseUrlNearBySearch + _location + rankBy + type + _placesApi);
