@@ -1,17 +1,31 @@
+// server.js
 const express = require("express");
+const http = require("http");
+const socketIo = require("socket.io");
+const { handleConnection } = require("./socketHandler");
+
+const PORT = process.env.PORT || 5000;
 
 const app = express();
-const PORT = 8000;
-
-app.get("/", (req, res) => {
-  res.send("Hello World");
+const server = http.createServer(app);
+const io = socketIo(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
 });
 
-app.get("/about", (req, res) => {
-  res.send("About route 🎉 ");
+io.use((socket, next) => {
+  if (socket.handshake.query && socket.handshake.query.callerId) {
+    socket.user = socket.handshake.query.callerId;
+    next();
+  } else {
+    next(new Error("Missing callerId"));
+  }
 });
 
-app.listen(PORT, () => {
-  console.log(`✅ Server is running on port ${PORT}`);
+io.on("connection", handleConnection);
+
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
-module.exports = app;

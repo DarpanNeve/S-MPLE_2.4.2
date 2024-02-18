@@ -20,7 +20,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       print(" LOCATION $locationData");
       print(locationData.latitude);
       print(locationData.longitude);
-      const radius = 10000;
+      const radius = 100;
       const type = 'hospital';
       const String _baseUrlNearBySearch =
           "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
