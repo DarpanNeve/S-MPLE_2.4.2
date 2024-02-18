@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Appointment {
-  final DateTime date;
-  final TimeOfDay time;
+  final String date;
+  final String  time;
   final String hospital;
   final String doctor;
   final String reason;

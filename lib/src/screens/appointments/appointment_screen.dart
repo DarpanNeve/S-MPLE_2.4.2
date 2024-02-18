@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:medi_connect/src/screens/doctor_chat/contact_doctor.dart';
 
@@ -18,6 +20,29 @@ class AppointmentScreen extends StatefulWidget {
 
 class _AppointmentScreenState extends State<AppointmentScreen> {
   List<Appointment> scheduledAppointments = [];
+  final uid=FirebaseAuth.instance.currentUser!.uid;
+   @override
+  void initState() {
+     fetchAppointments();
+    super.initState();
+  }
+  Future<void> fetchAppointments() async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection("appointments")
+        .where('uid', isEqualTo: uid)
+        .get();
+    querySnapshot.docs.forEach((doc) {
+      scheduledAppointments.add(Appointment(
+        date: doc['timestamp'].toString(),
+        time: doc['timestamp'].toString(),
+        hospital: doc['hospital'],
+        doctor: doc['doctor'],
+        reason: doc['reason'],
+      ));
+      print('appointments :${doc.data()}');
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
