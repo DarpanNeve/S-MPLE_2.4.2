@@ -6,6 +6,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:medi_connect/src/feature/login/auth_service.dart';
 import 'package:medi_connect/src/screens/profile/report_model.dart';
+
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -16,7 +18,6 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   List<Report> reports = [];
   final currentUser = FirebaseAuth.instance.currentUser;
-
   Future<void> retrieveAndPrintData() async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection("report_upload")
@@ -25,8 +26,16 @@ class _ProfilePageState extends State<ProfilePage> {
         .get();
 
     querySnapshot.docs.forEach((doc) {
-      print(doc.data());
+      reports.add(Report(
+        title: doc['title'],
+        url: doc['file location'],
+      ));
+      print('reports :${doc.data()}');
     });
+    setState(() {
+      reports = reports;
+    });
+    print(reports);
   }
 
   initState() {
@@ -55,7 +64,6 @@ class _ProfilePageState extends State<ProfilePage> {
       // User canceled the picker
     }
   }
-
   _addDataToFirestore(String url) async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     firestore
@@ -69,6 +77,10 @@ class _ProfilePageState extends State<ProfilePage> {
         "timestamp": FieldValue.serverTimestamp(),
       },
     );
+    setState(() {
+      reports = [];
+    });
+    retrieveAndPrintData();
   }
 
   @override
@@ -86,56 +98,86 @@ class _ProfilePageState extends State<ProfilePage> {
           )
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CircleAvatar(
-                radius: 50,
-                backgroundImage: NetworkImage(currentUser!.photoURL!),
-              ),
-            ],
-          ),
-          const SizedBox(height: 20),
-          Text(
-            currentUser!.displayName.toString(),
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          const SizedBox(height: 20),
-          Text(
-            currentUser!.email.toString(),
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.05,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              _pickPDF();
-            },
-            child: const Column(
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.cloud_upload),
-                Text("Add Record"),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  "Past Records",
-                  style: Theme.of(context).textTheme.titleLarge,
+                CircleAvatar(
+                  radius: 50,
+                  backgroundImage: NetworkImage(currentUser!.photoURL!),
                 ),
               ],
             ),
-          ),
-        ],
+            const SizedBox(height: 20),
+            Text(
+              currentUser!.displayName.toString(),
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const SizedBox(height: 20),
+            Text(
+              currentUser!.email.toString(),
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _pickPDF();
+              },
+              child: const Column(
+                children: [
+                  Icon(Icons.cloud_upload),
+                  Text("Add Record"),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    "Past Records",
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ],
+              ),
+            ),
+            Visibility(
+              visible: reports.isNotEmpty,
+              child: Column(
+                children: reports
+                    .map(
+                      (e) => ListTile(
+                    leading: Icon(Icons.picture_as_pdf),
+                    title: Text(e.title),
+                    onTap: () async {
+
+                          // FileDownloader.downloadFile(url: e.url,
+                          //   onDownloadCompleted: (value) {
+                          //     print('Downloaded');
+                          //   },
+                          // );
+                      // if (await canLaunchUrlString(url)) {
+                      //   Uri uri = Uri.parse(url);
+                      //   print(url);
+                      //   await launchUrl(uri, mode: LaunchMode.externalApplication);
+                      // } else {
+                      //   throw 'Could not launch ${e.url}';
+                      // }
+                    },
+                  ),
+                )
+                    .toList(),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
