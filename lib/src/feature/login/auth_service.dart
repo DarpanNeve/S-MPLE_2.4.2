@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:medi_connect/src/home_page.dart';
+import '../../screens/map/bloc/map_bloc.dart';
 import '../../widget/snackbar.dart';
 import '../../screens/login/login_page.dart';
 import '../user_info_update.dart';
@@ -16,7 +18,10 @@ class AuthService {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasData) {
           checkIsAdmin();
-          return const HomeScreen();
+          return BlocProvider(
+            create: (context) => MapBloc()..add(MapLoad()),
+            child:const  HomeScreen(),
+          );
         } else {
           return const LoginPage();
         }
@@ -36,7 +41,7 @@ class AuthService {
           defaultTargetPlatform == TargetPlatform.iOS) {
         final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
         final GoogleSignInAuthentication? googleAuth =
-            await googleUser?.authentication;
+        await googleUser?.authentication;
         final credential = GoogleAuthProvider.credential(
           accessToken: googleAuth?.accessToken,
           idToken: googleAuth?.idToken,
@@ -101,8 +106,8 @@ class AuthService {
     }
   }
 
-  signInWithEmailAndPassword(
-      String emailAddress, String password, BuildContext context) async {
+  signInWithEmailAndPassword(String emailAddress, String password,
+      BuildContext context) async {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: emailAddress, password: password);

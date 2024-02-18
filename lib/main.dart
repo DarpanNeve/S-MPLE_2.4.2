@@ -31,11 +31,11 @@ void main() async{
       return;
     }
   }
-  LocationData locationData;
-  locationData = await location.getLocation();
-  print(locationData);
-  print(locationData.latitude);
-  print(locationData.longitude);
+  // LocationData locationData;
+  // locationData = await location.getLocation();
+  // print(locationData);
+  // print(locationData.latitude);
+  // print(locationData.longitude);
   runApp(const MyApp());
 }
 
