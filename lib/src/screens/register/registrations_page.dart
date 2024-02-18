@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../widget/snackbar.dart';
-import 'auth_service.dart';
+import '../../feature/login/auth_service.dart';
 
 class RegistrationsPage extends StatefulWidget {
   const RegistrationsPage({super.key});

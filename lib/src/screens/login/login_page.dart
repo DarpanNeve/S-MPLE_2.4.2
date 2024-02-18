@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:medi_connect/src/feature/login/registrations_page.dart';
-import 'auth_service.dart';
+import 'package:medi_connect/src/screens/register/registrations_page.dart';
+import '../../feature/login/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:medi_connect/src/home_page.dart';
 import '../../widget/snackbar.dart';
-import 'login_page.dart';
+import '../../screens/login/login_page.dart';
+import '../user_info_update.dart';
 
 class AuthService {
   handleAuthState() {
@@ -14,6 +15,7 @@ class AuthService {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasData) {
+          checkIsAdmin();
           return const HomeScreen();
         } else {
           return const LoginPage();

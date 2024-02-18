@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medi_connect/src/feature/login/auth_service.dart';
 
 class HospitalScreen extends StatelessWidget {
   const HospitalScreen({super.key});
@@ -7,7 +8,15 @@ class HospitalScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hospitals'),
+        title: const Text('Hospitals'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              AuthService().signOut(context);
+            },
+            icon: const Icon(Icons.logout),
+          ),
+        ],
       ),
       body: Stack(
         children: [
