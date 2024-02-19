@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class EmergencyScreen extends StatelessWidget {
@@ -78,10 +79,21 @@ class EmergencyScreen extends StatelessWidget {
   }
 
   Widget _buildEmergencyItem(BuildContext context, IconData iconData, String title, String number) {
+    final Uri _phoneUri = Uri(
+        scheme: "tel",
+        path: number
+    );
     return ListTile(
       leading: Icon(
         iconData,
         color: Theme.of(context).colorScheme.primary,
+      ),
+      trailing: IconButton(
+        onPressed: () {
+          // Call emergency feature
+          launchUrl(_phoneUri);
+        },
+        icon: Icon(Icons.call, color: Theme.of(context).colorScheme.primary),
       ),
       title: Text(
         '$title: $number',
