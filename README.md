@@ -1,16 +1,35 @@
-# medi_connect
+# MediConnect 🏥
 
-A new Flutter project.
+## Healthcare at Your Fingertips: Find, Book, and Connect with Nearby Hospitals Effortlessly! 📱
 
-## Getting Started
+### Problem it solves
+MediConnect addresses the challenge of accessing timely healthcare services by providing users with a convenient platform to:
+- Locate nearby hospitals 🏥
+- Book appointments online 📅
+- Receive appointment reminders ⏰
+- Schedule virtual appointments via video calls with doctors 📹
+- Upload past medical records for seamless sharing with healthcare providers 📋
 
-This project is a starting point for a Flutter application.
+By offering these features, MediConnect streamlines the process of obtaining comprehensive care, ultimately enhancing the overall healthcare experience for individuals. ⚕️💻
 
-A few resources to get you started if this is your first Flutter project:
+### Challenges we ran into
+- Integrating video calling features with Node.js backend 🤝
+- Making it compatible with dark and light mode 🌓
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+But we did it! 💪
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Technologies used
+- Flutter 🦋
+- Google Map API 🗺️
+- Firebase 🔥
+- Node.js 🚀
+- WebRTC 📡
+- Google Places API 🔍
+- Video SDK 📹
+
+## Contribution
+We welcome contributions from developers of all skill levels. Let's make healthcare more accessible together! 👩‍⚕️👨‍💻
+
+---
+
+Feel free to reach out to us if you have any questions or suggestions. We're here to make healthcare more accessible for everyone! 🌟
