@@ -38,6 +38,7 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -45,9 +46,11 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Image.asset('assets/Images/logo-remove-bg.png',height: MediaQuery.of(context).size.height*0.2,
+                  color: Theme.of(context).colorScheme.inverseSurface,),
                 Text(
                   'Registration',
-                  style: Theme.of(context).textTheme.headline5!.copyWith(
+                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.bold,
                   ),
@@ -62,9 +65,7 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
                         TextFormField(
                           decoration: InputDecoration(
                             labelText: 'Name',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
+                            icon: const Icon(Icons.person),
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -80,9 +81,7 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
                         TextFormField(
                           decoration: InputDecoration(
                             labelText: 'Email',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
+                            icon: const Icon(Icons.email),
                           ),
                           onSaved: (value) {
                             _email = value!;
@@ -99,9 +98,7 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
                           obscureText: true,
                           decoration: InputDecoration(
                             labelText: 'Password',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
+                            icon: const Icon(Icons.lock),
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -118,9 +115,7 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
                           obscureText: true,
                           decoration: InputDecoration(
                             labelText: 'Confirm Password',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
+                            icon: const Icon(Icons.lock),
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {

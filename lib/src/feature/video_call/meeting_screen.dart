@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:videosdk/videosdk.dart';
 import './participant_tile.dart';
-import 'join_screen.dart';
 import 'meeting_controls.dart';
 
 class MeetingScreen extends StatefulWidget {
@@ -78,7 +77,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
   }
 
   // onbackButton pressed leave the room
-  Future<bool> _onWillPop() async {
+  _onWillPop(bool ans) async {
     _room.leave();
     return true;
   }
@@ -86,12 +85,10 @@ class _MeetingScreenState extends State<MeetingScreen> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () => _onWillPop(),
+    return PopScope(
+      onPopInvoked: _onWillPop(true),
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('VideoSDK QuickStart'),
-        ),
+
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(

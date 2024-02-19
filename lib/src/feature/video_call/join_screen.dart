@@ -59,9 +59,6 @@ class _JoinScreenState extends State<JoinScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('VideoSDK QuickStart'),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
