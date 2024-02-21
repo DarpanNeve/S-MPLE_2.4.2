@@ -600,6 +600,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.0"
+  google_gemini:
+    dependency: "direct main"
+    description:
+      name: google_gemini
+      sha256: a99e14ba2d497ec8e2b4c83e483204709a4ce3ec6c0a6021b3c4a9b2cd671150
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.2"
+  google_generative_ai:
+    dependency: "direct main"
+    description:
+      name: google_generative_ai
+      sha256: "2c8cb557c196487c5624da02a0914935e48874112a8201cb7b9379c79cd3bde7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   google_identity_services_web:
     dependency: transitive
     description:
@@ -1317,6 +1333,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.1"
+  upi_india:
+    dependency: "direct main"
+    description:
+      name: upi_india
+      sha256: "483f1425ee8f0897397861b107e50b3aa195fec71215f86e906b625e841e90dd"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.1"
   url_launcher:
     dependency: "direct main"
     description:

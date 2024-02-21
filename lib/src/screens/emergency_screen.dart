@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import '../feature/payment_gateway.dart';
+
 import '../utils/strings_english.dart';
 
 class EmergencyScreen extends StatelessWidget {
@@ -13,6 +15,19 @@ class EmergencyScreen extends StatelessWidget {
       // appBar: AppBar(
       //   title: const Text('Emergency Assistance'),
       // ),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: const Icon(Icons.payments),
+        label: const Text('Pay'),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return PaymentGateway();
+              },
+            ),
+          );
+        },
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -20,7 +35,10 @@ class EmergencyScreen extends StatelessWidget {
           children: [
             Text(
               emergencyNumbers,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary),
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.primary),
             ),
             const SizedBox(height: 20),
             Container(
