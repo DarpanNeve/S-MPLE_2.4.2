@@ -12,7 +12,7 @@ class JoinScreen extends StatefulWidget {
 }
 
 class _JoinScreenState extends State<JoinScreen> {
-  // final _meetingIdController = TextEditingController();
+  final _meetingIdController = TextEditingController();
 String _meetingId = '123456789';
   void onCreateButtonPressed(BuildContext context) async {
     // call api to create meeting and then navigate to MeetingScreen with meetingId,token
@@ -54,7 +54,7 @@ String _meetingId = '123456789';
     // TODO: implement initState
     super.initState();
     // onJoinButtonPressed(context);
-    onCreateButtonPressed(context);
+    // onCreateButtonPressed(context);
   }
   @override
   Widget build(BuildContext context) {
@@ -64,20 +64,20 @@ String _meetingId = '123456789';
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // ElevatedButton(
-            //   onPressed: () => onCreateButtonPressed(context),
-            //   child: Text(createMeet),
-            // ),
-            // Container(
-            //   margin: const EdgeInsets.fromLTRB(0, 8.0, 0, 8.0),
-            //   child: TextField(
-            //     decoration:  InputDecoration(
-            //       hintText: meetId,
-            //       border: OutlineInputBorder(),
-            //     ),
-            //     controller: _meetingIdController,
-            //   ),
-            // ),
+            ElevatedButton(
+              onPressed: () => onCreateButtonPressed(context),
+              child: Text(createMeet),
+            ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(0, 8.0, 0, 8.0),
+              child: TextField(
+                decoration:  InputDecoration(
+                  hintText: meetId,
+                  border: OutlineInputBorder(),
+                ),
+                controller: _meetingIdController,
+              ),
+            ),
             ElevatedButton(
               onPressed: () => onJoinButtonPressed(context),
               child:  Text(joinMeet),

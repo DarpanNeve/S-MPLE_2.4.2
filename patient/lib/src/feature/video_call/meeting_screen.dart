@@ -89,45 +89,47 @@ class _MeetingScreenState extends State<MeetingScreen> {
     return WillPopScope(
       onWillPop: () => _onWillPop(),
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Text(widget.meetingId),
-              //render all participant
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      mainAxisExtent: 300,
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Text(widget.meetingId),
+                //render all participant
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GridView.builder(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        mainAxisExtent: 300,
+                      ),
+                      itemBuilder: (context, index) {
+                        return ParticipantTile(
+                            key: Key(participants.values.elementAt(index).id),
+                            participant: participants.values.elementAt(index));
+                      },
+                      itemCount: participants.length,
                     ),
-                    itemBuilder: (context, index) {
-                      return ParticipantTile(
-                          key: Key(participants.values.elementAt(index).id),
-                          participant: participants.values.elementAt(index));
-                    },
-                    itemCount: participants.length,
                   ),
                 ),
-              ),
-              MeetingControls(
-                onToggleMicButtonPressed: () {
-                  micEnabled ? _room.muteMic() : _room.unmuteMic();
-                  micEnabled = !micEnabled;
-                },
-                onToggleCameraButtonPressed: () {
-                  camEnabled ? _room.disableCam() : _room.enableCam();
-                  camEnabled = !camEnabled;
-                },
-                onLeaveButtonPressed: () {
-                  _room.leave();
-                },
-              ),
-            ],
+                MeetingControls(
+                  onToggleMicButtonPressed: () {
+                    micEnabled ? _room.muteMic() : _room.unmuteMic();
+                    micEnabled = !micEnabled;
+                  },
+                  onToggleCameraButtonPressed: () {
+                    camEnabled ? _room.disableCam() : _room.enableCam();
+                    camEnabled = !camEnabled;
+                  },
+                  onLeaveButtonPressed: () {
+                    _room.leave();
+                  },
+                ),
+              ],
+            ),
           ),
         ),
 
