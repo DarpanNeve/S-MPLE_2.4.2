@@ -49,12 +49,13 @@ String _meetingId = '123456789';
     }
   }
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   onCreateButtonPressed(context);
-  // }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    onJoinButtonPressed(context);
+    // onCreateButtonPressed(context);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

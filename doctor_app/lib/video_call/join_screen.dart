@@ -14,20 +14,20 @@ class JoinScreen extends StatefulWidget {
 class _JoinScreenState extends State<JoinScreen> {
   final _meetingIdController = TextEditingController();
 
-  void onCreateButtonPressed(BuildContext context) async {
-    // call api to create meeting and then navigate to MeetingScreen with meetingId,token
-    await createMeeting().then((meetingId) {
-      if (!context.mounted) return;
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => MeetingScreen(
-            meetingId: meetingId,
-            token: token,
-          ),
-        ),
-      );
-    });
-  }
+  // void onCreateButtonPressed(BuildContext context) async {
+  //   // call api to create meeting and then navigate to MeetingScreen with meetingId,token
+  //   await createMeeting().then((meetingId) {
+  //     if (!context.mounted) return;
+  //     Navigator.of(context).push(
+  //       MaterialPageRoute(
+  //         builder: (context) => MeetingScreen(
+  //           meetingId: meetingId,
+  //           token: token,
+  //         ),
+  //       ),
+  //     );
+  //   });
+  // }
   String chatRoomId(String? user1, String user2) {
     if (user1!.toLowerCase().codeUnits[0] > user2.toLowerCase().codeUnits[0]) {
       return "$user1$user2";
@@ -37,11 +37,10 @@ class _JoinScreenState extends State<JoinScreen> {
   }
 
   void onJoinButtonPressed(BuildContext context) {
-    String meetingId = _meetingIdController.text;
-    var re = RegExp("\\w{4}\\-\\w{4}\\-\\w{4}");
+    String meetingId = "123456789";
     // check meeting id is not null or invaild
     // if meeting id is vaild then navigate to MeetingScreen with meetingId,token
-    if (meetingId.isNotEmpty && re.hasMatch(meetingId)) {
+    if (meetingId.isNotEmpty ) {
       _meetingIdController.clear();
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -62,7 +61,8 @@ class _JoinScreenState extends State<JoinScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    onCreateButtonPressed(context);
+    onJoinButtonPressed(context);
+    // onCreateButtonPressed(context);
   }
   @override
   Widget build(BuildContext context) {
@@ -72,10 +72,10 @@ class _JoinScreenState extends State<JoinScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: () => onCreateButtonPressed(context),
-              child: Text(createMeet),
-            ),
+            // ElevatedButton(
+            //   onPressed: () => onCreateButtonPressed(context),
+            //   child: Text(createMeet),
+            // ),
             Container(
               margin: const EdgeInsets.fromLTRB(0, 8.0, 0, 8.0),
               child: TextField(
