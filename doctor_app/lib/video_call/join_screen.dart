@@ -14,20 +14,20 @@ class JoinScreen extends StatefulWidget {
 class _JoinScreenState extends State<JoinScreen> {
   final _meetingIdController = TextEditingController();
 
-  // void onCreateButtonPressed(BuildContext context) async {
-  //   // call api to create meeting and then navigate to MeetingScreen with meetingId,token
-  //   await createMeeting().then((meetingId) {
-  //     if (!context.mounted) return;
-  //     Navigator.of(context).push(
-  //       MaterialPageRoute(
-  //         builder: (context) => MeetingScreen(
-  //           meetingId: meetingId,
-  //           token: token,
-  //         ),
-  //       ),
-  //     );
-  //   });
-  // }
+  void onCreateButtonPressed(BuildContext context) async {
+    // call api to create meeting and then navigate to MeetingScreen with meetingId,token
+    await createMeeting().then((meetingId) {
+      if (!context.mounted) return;
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => MeetingScreen(
+            meetingId: meetingId,
+            token: token,
+          ),
+        ),
+      );
+    });
+  }
   String chatRoomId(String? user1, String user2) {
     if (user1!.toLowerCase().codeUnits[0] > user2.toLowerCase().codeUnits[0]) {
       return "$user1$user2";
@@ -61,7 +61,8 @@ class _JoinScreenState extends State<JoinScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    onJoinButtonPressed(context);
+    onCreateButtonPressed(context);
+
     // onCreateButtonPressed(context);
   }
   @override

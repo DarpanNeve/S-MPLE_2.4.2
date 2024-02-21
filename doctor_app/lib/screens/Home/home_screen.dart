@@ -1,3 +1,4 @@
+import 'package:doctor_app/video_call/join_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -69,6 +70,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
           )
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => JoinScreen(),
+            ),
+          );
+        },
+        child: const Icon(Icons.person),
       ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

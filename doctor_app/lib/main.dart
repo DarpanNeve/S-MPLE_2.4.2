@@ -17,7 +17,6 @@ void main() async{
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Location location = Location();
-  Stripe.publishableKey = FlutterConfig.get('STRIPE_API_KEY');
   bool serviceEnabled;
   PermissionStatus permissionGranted;
 

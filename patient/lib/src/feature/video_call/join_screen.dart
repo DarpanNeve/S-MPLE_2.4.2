@@ -14,20 +14,20 @@ class JoinScreen extends StatefulWidget {
 class _JoinScreenState extends State<JoinScreen> {
   // final _meetingIdController = TextEditingController();
 String _meetingId = '123456789';
-  // void onCreateButtonPressed(BuildContext context) async {
-  //   // call api to create meeting and then navigate to MeetingScreen with meetingId,token
-  //   await createMeeting().then((meetingId) {
-  //     if (!context.mounted) return;
-  //     Navigator.of(context).push(
-  //       MaterialPageRoute(
-  //         builder: (context) => MeetingScreen(
-  //           meetingId: meetingId,
-  //           token: token,
-  //         ),
-  //       ),
-  //     );
-  //   });
-  // }
+  void onCreateButtonPressed(BuildContext context) async {
+    // call api to create meeting and then navigate to MeetingScreen with meetingId,token
+    await createMeeting().then((meetingId) {
+      if (!context.mounted) return;
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => MeetingScreen(
+            meetingId: meetingId,
+            token: token,
+          ),
+        ),
+      );
+    });
+  }
 
   void onJoinButtonPressed(BuildContext context) {
     String meetingId = _meetingId;
@@ -53,8 +53,8 @@ String _meetingId = '123456789';
   void initState() {
     // TODO: implement initState
     super.initState();
-    onJoinButtonPressed(context);
-    // onCreateButtonPressed(context);
+    // onJoinButtonPressed(context);
+    onCreateButtonPressed(context);
   }
   @override
   Widget build(BuildContext context) {
