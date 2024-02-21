@@ -12,30 +12,28 @@ class JoinScreen extends StatefulWidget {
 }
 
 class _JoinScreenState extends State<JoinScreen> {
-  final _meetingIdController = TextEditingController();
-
-  void onCreateButtonPressed(BuildContext context) async {
-    // call api to create meeting and then navigate to MeetingScreen with meetingId,token
-    await createMeeting().then((meetingId) {
-      if (!context.mounted) return;
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => MeetingScreen(
-            meetingId: meetingId,
-            token: token,
-          ),
-        ),
-      );
-    });
-  }
+  // final _meetingIdController = TextEditingController();
+String _meetingId = '123456789';
+  // void onCreateButtonPressed(BuildContext context) async {
+  //   // call api to create meeting and then navigate to MeetingScreen with meetingId,token
+  //   await createMeeting().then((meetingId) {
+  //     if (!context.mounted) return;
+  //     Navigator.of(context).push(
+  //       MaterialPageRoute(
+  //         builder: (context) => MeetingScreen(
+  //           meetingId: meetingId,
+  //           token: token,
+  //         ),
+  //       ),
+  //     );
+  //   });
+  // }
 
   void onJoinButtonPressed(BuildContext context) {
-    String meetingId = _meetingIdController.text;
-    var re = RegExp("\\w{4}\\-\\w{4}\\-\\w{4}");
+    String meetingId = _meetingId;
     // check meeting id is not null or invaild
     // if meeting id is vaild then navigate to MeetingScreen with meetingId,token
-    if (meetingId.isNotEmpty && re.hasMatch(meetingId)) {
-      _meetingIdController.clear();
+    if (meetingId.isNotEmpty) {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => MeetingScreen(
@@ -51,12 +49,12 @@ class _JoinScreenState extends State<JoinScreen> {
     }
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    onCreateButtonPressed(context);
-  }
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   onCreateButtonPressed(context);
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,20 +63,20 @@ class _JoinScreenState extends State<JoinScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: () => onCreateButtonPressed(context),
-              child: Text(createMeet),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0, 8.0, 0, 8.0),
-              child: TextField(
-                decoration:  InputDecoration(
-                  hintText: meetId,
-                  border: OutlineInputBorder(),
-                ),
-                controller: _meetingIdController,
-              ),
-            ),
+            // ElevatedButton(
+            //   onPressed: () => onCreateButtonPressed(context),
+            //   child: Text(createMeet),
+            // ),
+            // Container(
+            //   margin: const EdgeInsets.fromLTRB(0, 8.0, 0, 8.0),
+            //   child: TextField(
+            //     decoration:  InputDecoration(
+            //       hintText: meetId,
+            //       border: OutlineInputBorder(),
+            //     ),
+            //     controller: _meetingIdController,
+            //   ),
+            // ),
             ElevatedButton(
               onPressed: () => onJoinButtonPressed(context),
               child:  Text(joinMeet),
