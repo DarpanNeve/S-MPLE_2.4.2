@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -22,14 +23,49 @@ class _MyAppState extends State<map> {
   void _onMapCreated(GoogleMapController controller) {
     _controller.complete(controller);
   }
-  void _showHospitalInfoBottomSheet(BuildContext context, Hospital hospital) {
+  void _showHospitalInfoBottomSheet(BuildContext context, Hospital hospital) async{
+    // final snapshot = await FirebaseDatabase.instance.ref(hospital.name).get();
+    // List<Rating> ratings = [];
+    // print('printing from snapshot ${snapshot.value}');
+    // if (snapshot.value != null){
+    //   final List<dynamic>? dataList = snapshot.value as List<dynamic>?;
+    //   if (dataList != null){
+    //     ratings = dataList.map((data) {
+    //       return Rating(
+    //         uid: data['uid'] ?? '',
+    //         userName: data['userName'] ?? '',
+    //         rating: (data['rating'] as num?)?.toDouble() ?? 0.0,
+    //         comment: data['comment'] ?? '',
+    //       );
+    //     }).toList();
+    //   }
+    // }
+    final snapshot = await FirebaseDatabase.instance.ref(hospital.name).child('ratings').get();
+    List<Rating> ratings = [];
+    print('printing from snapshot ${snapshot.value}');
+    if (snapshot.value != null){
+      final Map<dynamic, dynamic>? dataMap = snapshot.value as Map<dynamic, dynamic>?;
+
+      if (dataMap != null){
+        dataMap.forEach((key, value) {
+          ratings.add(
+            Rating(
+              uid: value['uid'] ?? '',
+              userName: value['name'] ?? '',
+              rating: (value['rating'] as num?)?.toDouble() ?? 0.0,
+              comment: value['comment'] ?? '',
+            ),
+          );
+        });
+      }
+    }
     showModalBottomSheet(
       context: context,
       isDismissible: true,
       builder: (BuildContext context) {
         return Container(
           height: MediaQuery.of(context).size.height * 0.5,
-          child: _buildHospitalInfo(hospital,context),
+          child: _buildHospitalInfo(hospital,context,ratings),
         );
       },
     );
@@ -97,7 +133,7 @@ class _MyAppState extends State<map> {
 }
 
 
-Widget _buildHospitalInfo(Hospital hospital,BuildContext context) {
+Widget _buildHospitalInfo(Hospital hospital,BuildContext context,List<Rating> ratings) {
   return SingleChildScrollView(
     child: Container(
       width: MediaQuery.of(context).size.width*1,
@@ -151,6 +187,15 @@ Widget _buildHospitalInfo(Hospital hospital,BuildContext context) {
                 ),
               ],
             ),
+            Column(
+              children: ratings.map((rating) {
+                return ListTile(
+                  title: Text(rating.userName),
+                  subtitle: Text(rating.comment),
+                  trailing: Text(rating.rating.toString()),
+                );
+              }).toList(),
+            )
             // Add more information as needed
           ],
         ),

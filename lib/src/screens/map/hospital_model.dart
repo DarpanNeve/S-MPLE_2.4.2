@@ -6,6 +6,7 @@ class Hospital {
   String phone;
   String website;
   double reviews;
+  List<Rating> ratings;
 
   Hospital({
     required this.name,
@@ -15,28 +16,62 @@ class Hospital {
     required this.phone,
     required this.website,
     required this.reviews,
+    required this.ratings,
   });
 
-  factory Hospital.fromMap(Map<dynamic, dynamic> map) {
+  // Add the factory method and toJson method as shown in the previous implementation
+
+  // Add a fromJson method to parse the data retrieved from Firebase
+  factory Hospital.fromJson(Map<String, dynamic> json) {
+    List<Rating> ratings = [];
+    if (json['ratings'] != null) {
+      json['ratings'].forEach((ratingJson) {
+        ratings.add(Rating.fromJson(ratingJson));
+      });
+    }
     return Hospital(
-      name: map['name'],
-      latitude: double.parse(map['latitude'].toString()),
-      longitude: double.parse(map['longitude'].toString()),
-      elevation: map['elevation'],
-      phone: map['phone'],
-      website: map['website'],
-      reviews: double.parse(map['reviews'].toString()),
+      name: json['name'],
+      latitude: json['latitude'],
+      longitude: json['longitude'],
+      elevation: json['elevation'],
+      phone: json['phone'],
+      website: json['website'],
+      reviews: json['reviews'],
+      ratings: ratings,
     );
   }
-  factory Hospital.fromJson(Map<String, dynamic> json) {
-    return Hospital(
-      name: json['name'] as String,
-      latitude: json['latitude'] as double,
-      longitude: json['longitude'] as double,
-      elevation: json['elevation'] as String,
-      phone: json['phone'] as String,
-      website: json['website'] as String,
-      reviews: json['reviews'] as double,
+}
+
+class Rating {
+  String uid;
+  String userName;
+  double rating;
+  String comment;
+
+  Rating({
+    required this.uid,
+    required this.userName,
+    required this.rating,
+    required this.comment,
+  });
+
+  // Add toJson method to convert Rating object to a JSON map
+  Map<String, dynamic> toJson() {
+    return {
+      'uid': uid,
+      'userName': userName,
+      'rating': rating,
+      'comment': comment,
+    };
+  }
+
+  // Add fromJson method to parse the data retrieved from Firebase
+  factory Rating.fromJson(Map<String, dynamic> json) {
+    return Rating(
+      uid: json['uid'],
+      userName: json['userName'],
+      rating: json['rating'],
+      comment: json['comment'],
     );
   }
 }

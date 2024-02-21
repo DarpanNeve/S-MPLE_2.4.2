@@ -30,17 +30,32 @@ class MapBloc extends Bloc<MapEvent, MapState> {
           final List<dynamic>? dataList = snapshot.value as List<dynamic>?;
           if (dataList != null) {
             final List<Hospital> hospitals = dataList.map((data) {
+              // Fetch ratings if available
+              List<Rating> ratings = [];
+              if (data['ratings'] != null) {
+                final List<dynamic> ratingList = data['ratings'] as List<dynamic>;
+                ratings = ratingList.map((ratingData) {
+                  return Rating(
+                    uid: ratingData['uid'] ?? '',
+                    userName: ratingData['userName'] ?? '',
+                    rating: (ratingData['rating'] as num?)?.toDouble() ?? 0.0,
+                    comment: ratingData['comment'] ?? '',
+                  );
+                }).toList();
+              }
+
               return Hospital(
-                name: data['name'] ?? '', // Handle null values by providing a default value
-                latitude: (data['latitude'] as num?)?.toDouble() ?? 0.0, // Handle null values and invalid types
-                longitude: (data['longitude'] as num?)?.toDouble() ?? 0.0, // Handle null values and invalid types
-                elevation: data['elevation'] ?? '', // Handle null values by providing a default value
-                phone: data['phone'] ?? '', // Handle null values by providing a default value
-                website: data['website'] ?? '', // Handle null values by providing a default value
-                reviews: (data['reviews'] as num?)?.toDouble() ?? 0.0, // Handle null values and invalid types
+                name: data['name'] ?? '',
+                latitude: (data['latitude'] as num?)?.toDouble() ?? 0.0,
+                longitude: (data['longitude'] as num?)?.toDouble() ?? 0.0,
+                elevation: data['elevation'] ?? '',
+                phone: data['phone'] ?? '',
+                website: data['website'] ?? '',
+                reviews: (data['reviews'] as num?)?.toDouble() ?? 0.0,
+                ratings: ratings, // Pass the fetched ratings
               );
             }).toList();
-            print('print from bloc $hospitals');
+
             emit(MapLoaded(LatLng(locationData.latitude!, locationData.longitude!), hospitals));
           } else {
             emit(MapError('Data from Firebase is not in the expected format'));
