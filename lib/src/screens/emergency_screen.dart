@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import '../feature/payment_gateway.dart';
+
 class EmergencyScreen extends StatelessWidget {
   const EmergencyScreen({Key? key}) : super(key: key);
 
@@ -11,6 +13,19 @@ class EmergencyScreen extends StatelessWidget {
       // appBar: AppBar(
       //   title: const Text('Emergency Assistance'),
       // ),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: const Icon(Icons.payments),
+        label: const Text('Pay'),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return PaymentGateway();
+              },
+            ),
+          );
+        },
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -18,7 +33,10 @@ class EmergencyScreen extends StatelessWidget {
           children: [
             Text(
               'Emergency Numbers',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary),
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.primary),
             ),
             const SizedBox(height: 20),
             Container(
@@ -68,7 +86,7 @@ class EmergencyScreen extends StatelessWidget {
             ElevatedButton(onPressed: () {
 
             }, child: Text(
-              "Contact Family"
+                "Contact Family"
             ))
           ],
         ),
