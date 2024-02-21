@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import '../../../feature/fcm/notification_initialiser.dart';
 
 class AddReminder extends StatefulWidget {
@@ -31,30 +32,34 @@ class _AddReminderState extends State<AddReminder> {
     if (_selectedOption != null &&
         _selectedTime != null &&
         _textEditingController.text.isNotEmpty) {
-      final DateTime combinedDateTime =await DateTime(
-        2024,
-        2,
-        21,
-        // _selectedDate!.year,
-        // _selectedDate!.month,
-        // _selectedDate!.day,
+      debugPrint('Creating combined DateTime...');
+      final DateTime combinedDateTime = DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
         _selectedTime!.hour,
         _selectedTime!.minute,
       );
+      debugPrint('Combined DateTime: $combinedDateTime');
 
       Timestamp appointmentTimestamp = Timestamp.fromDate(combinedDateTime);
 
+      debugPrint('Setting reminder document in Firestore...');
       await FirebaseFirestore.instance.collection('reminder').doc(appointmentTimestamp.toString()).set({
         'option': _selectedOption,
         'time': _selectedTime,
         'text': _textEditingController.text,
         'timestamp': appointmentTimestamp,
-        'uid':FirebaseAuth.instance.currentUser!.uid,
+        'uid': FirebaseAuth.instance.currentUser!.uid,
       });
-      await notification().scheduleNotification(combinedDateTime,_selectedOption!,_textEditingController.text,true);
+
+      debugPrint('Scheduling notification...');
+      await notification().scheduleNotification(combinedDateTime,
+          _selectedOption!, _textEditingController.text, true);
+
       setState(() {
-        _selectedTime = null;
-        _textEditingController.text = '';
+        // _selectedTime = null;
+        // _textEditingController.text = '';
       });
 
       Navigator.pop(context);
@@ -67,6 +72,7 @@ class _AddReminderState extends State<AddReminder> {
       );
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,7 +1,9 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Appointment {
-  final String date;
-  final String  time;
+  final Timestamp date;
+  final Timestamp time;
   final String hospital;
   final String doctor;
   final String reason;
