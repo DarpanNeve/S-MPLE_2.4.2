@@ -7,6 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
 import '../appointments/book_appointment.dart';
+import 'ChatBot/chat_bot.dart';
 import 'bloc/map_bloc.dart';
 import 'hospital_model.dart';
 
@@ -36,6 +37,14 @@ class _MyAppState extends State<map> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+             Navigator.push(context, MaterialPageRoute(builder: (context) => ChatBot()));
+        },
+        label: Text('Chat With Bot'),
+        icon: Icon(Icons.chat),
+
+      ),
         body: BlocBuilder<MapBloc, MapState>(
         builder: (context, state) {
           if (state is MapLoaded) {
