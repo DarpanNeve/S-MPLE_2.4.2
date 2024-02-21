@@ -29,8 +29,8 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
         .get();
     querySnapshot.docs.forEach((doc) {
       scheduledAppointments.add(Appointment(
-        date: doc['timestamp'].toString(),
-        time: doc['timestamp'].toString(),
+        date: doc['timestamp'],
+        time: doc['timestamp'],
         hospital: doc['hospital'],
         doctor: doc['doctor'],
         reason: doc['reason'],
@@ -112,8 +112,8 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          //Text('Date: ${appointment.date}, Time: ${appointment.time}'),
-                          Text('$date: ${appointment.date.substring(0,10)}'),
+                          Text('Date: ${appointment.date.toDate()}'),
+                          // Text('$date: ${appointment.date.substring(0,10)}'),
                           Text('$hospitalHeader: ${appointment.hospital}'),
                           Text('$doctor: ${appointment.doctor}'),
                         ],
