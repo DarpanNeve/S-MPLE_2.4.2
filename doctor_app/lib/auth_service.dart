@@ -1,3 +1,4 @@
+import 'package:doctor_app/screens/Home/home_screen.dart';
 import 'package:doctor_app/widget/snackbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -23,7 +24,7 @@ class AuthService {
           //   child:const  HomeScreen(),
           // );
           if (FirebaseAuth.instance.currentUser!.emailVerified) {
-            return Placeholder();
+            return const HomeScreen();
           } else {
             signOutWithoutSnackBar();
             sendVerificationEmail(context);
