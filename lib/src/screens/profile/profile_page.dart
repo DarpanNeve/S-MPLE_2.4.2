@@ -52,12 +52,15 @@ class _ProfilePageState extends State<ProfilePage> {
     querySnapshot.docs.forEach((doc) {
       reminders.add(Reminder(
         option: doc['option'],
-        time: doc['time'],
+        //time: doc['time'],
         text: doc['text'],
       ));
       print('appointments :${doc.data()}');
     });
-    setState(() {});
+    setState(() {
+      reminders = reminders;
+    });
+    print(reminders);
   }
 
   initState() {

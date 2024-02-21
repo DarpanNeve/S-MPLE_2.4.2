@@ -15,7 +15,7 @@ class _AddReminderState extends State<AddReminder> {
   String? _selectedOption;
   TimeOfDay? _selectedTime;
   TextEditingController _textEditingController = TextEditingController();
- DateTime now= DateTime.now();
+  DateTime now= DateTime.now();
   Future<void> _selectTime(BuildContext context) async {
     final TimeOfDay? pickedTime = await showTimePicker(
       context: context,
@@ -43,11 +43,11 @@ class _AddReminderState extends State<AddReminder> {
       debugPrint('Combined DateTime: $combinedDateTime');
 
       Timestamp appointmentTimestamp = Timestamp.fromDate(combinedDateTime);
-
+      debugPrint(appointmentTimestamp.runtimeType.toString());
+      debugPrint(combinedDateTime.runtimeType.toString());
       debugPrint('Setting reminder document in Firestore...');
       await FirebaseFirestore.instance.collection('reminder').doc(appointmentTimestamp.toString()).set({
         'option': _selectedOption,
-        'time': _selectedTime,
         'text': _textEditingController.text,
         'timestamp': appointmentTimestamp,
         'uid': FirebaseAuth.instance.currentUser!.uid,
