@@ -1,0 +1,107 @@
+{
+  "project_info": {
+    "project_number": "251298963593",
+    "firebase_url": "https://blue-bit-simple-default-rtdb.firebaseio.com",
+    "project_id": "blue-bit-simple",
+    "storage_bucket": "blue-bit-simple.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251298963593:android:473f99c8d523d9aaa76658",
+        "android_client_info": {
+          "package_name": "com.example.doctor_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "251298963593-2br498ie3snnjr3mjim36n7hlrva3r72.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoArJ4rye9r8IUww8Inh7SKVT4vtFjzxo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "251298963593-2br498ie3snnjr3mjim36n7hlrva3r72.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "251298963593-10ohvdabkf2b86p0qb6cqqbg6m7u1108.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.mediConnect.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251298963593:android:a075cff19ae915cda76658",
+        "android_client_info": {
+          "package_name": "com.example.medi_connect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "251298963593-0ahsrhgq6cd6ucvf318n30pbghsa5694.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medi_connect",
+            "certificate_hash": "881832e8a5171151cabdb5d415022a95d5e84768"
+          }
+        },
+        {
+          "client_id": "251298963593-lo124m5sdi2ntrp7kl5vnkjkf2pn7lea.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medi_connect",
+            "certificate_hash": "5291eb64e1dfc9016cf7bdddbb179cb5198e8677"
+          }
+        },
+        {
+          "client_id": "251298963593-pe7lu089707c5hrp7g4hsl88lo33m7hk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medi_connect",
+            "certificate_hash": "15b46160652a3b236e8d84ba2924a44d70262771"
+          }
+        },
+        {
+          "client_id": "251298963593-2br498ie3snnjr3mjim36n7hlrva3r72.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoArJ4rye9r8IUww8Inh7SKVT4vtFjzxo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "251298963593-2br498ie3snnjr3mjim36n7hlrva3r72.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "251298963593-10ohvdabkf2b86p0qb6cqqbg6m7u1108.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.mediConnect.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
