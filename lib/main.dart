@@ -2,6 +2,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:medi_connect/src/feature/fcm/notification_initialiser.dart';
 import 'package:medi_connect/src/feature/login/auth_service.dart';
 import 'package:medi_connect/src/utils/strings_english.dart';
@@ -16,7 +17,7 @@ void main() async{
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Location location = Location();
-
+  Stripe.publishableKey = FlutterConfig.get('STRIPE_API_KEY');
   bool serviceEnabled;
   PermissionStatus permissionGranted;
 

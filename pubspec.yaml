@@ -65,8 +65,8 @@ dependencies:
   awesome_notifications: ^0.9.2
   google_generative_ai: ^0.2.0
   google_gemini: ^0.1.2
+  flutter_stripe: ^5.0.0
   upi_india: ^3.0.1
-
 
 
 

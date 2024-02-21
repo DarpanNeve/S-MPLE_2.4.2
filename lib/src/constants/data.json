@@ -1,0 +1,115 @@
+{
+  "Hospital": [
+    {
+      "id": 1,
+      "name": "Dhanwantari Hospital Nigdi",
+      "latitude": 18.65586645,
+      "longitude": 73.76812952,
+      "distance": "602 m",
+      "phone": "8605018483",
+      "website": "http://www.dhanwantarihospital.in/",
+      "rating": 3.3
+    },
+    {
+      "id": 2,
+      "name": "PDEA's Ayurveda Rugnalaya & Sterling Multi Speciality Hospital ARSMH",
+      "latitude": 18.6548547,
+      "longitude": 73.7696807,
+      "distance": "601 m",
+      "phone": "2027332700",
+      "website": "http://www.sterlingmultispecialityhospital.com/",
+      "rating": 3.3
+    },
+    {
+      "id": 3,
+      "name": "Diwan Hospital Pune",
+      "latitude": 18.6579111,
+      "longitude": 73.7762953,
+      "distance": "593 m",
+      "phone": "8080707691",
+      "website": "https://www.diwanhospitalpune.com/",
+      "rating": 4.4
+    },
+    {
+      "id": 4,
+      "name": "Aditi Multispeciality Hospital",
+      "latitude": 18.6561789,
+      "longitude": 73.77319634,
+      "distance": "594",
+      "phone": "9881212100",
+      "website": "https://www.diwanhospitalpune.com/",
+      "rating": 4.6
+    },
+    {
+      "id": 5,
+      "name": "Triveni Hospital",
+      "latitude": 18.63390354,
+      "longitude": 73.7670438,
+      "distance": "582",
+      "phone": "7038527724",
+      "website": "http://www.trivenihospitalpune.com/",
+      "rating": 4.4
+    },
+    {
+      "id": 6,
+      "name": "Global Hospital & Research Centre",
+      "latitude": 18.64720007,
+      "longitude": 73.75705077,
+      "distance": "550",
+      "phone": "9356062962",
+      "website": "https://globalhospitalpune.in/",
+      "rating": 4.3
+    },
+    {
+      "id": 7,
+      "name": "PDEA's Ayurveda Rugnalaya & Sterling Multi Speciality Hospital ARSMH",
+      "latitude": 18.65480199,
+      "longitude": 73.76973088,
+      "distance": "592",
+      "phone": "2027332700",
+      "website": "sterlingmultispecialityhospital.com",
+      "rating": 4.9
+    },
+    {
+      "id": 8,
+      "name": "INDU SURGICARE HOSPITAL",
+      "latitude": 18.64045307,
+      "longitude": 73.7713495,
+      "distance": "591",
+      "phone": "8149653995",
+      "website": "http://ww25.indusurgicarehospital.com/",
+      "rating": 4.9
+    },
+    {
+      "id": 9,
+      "name": "Flora Multispeciality Hospital",
+      "latitude": 18.64760345,
+      "longitude": 73.75436572,
+      "distance": "585",
+      "phone": "7276219050",
+      "website": "https://florahospital.in/",
+      "rating": 4.5
+    },
+    {
+      "id": 10,
+      "name": "Ojass Multispeciality Hospital Ravet",
+      "latitude": 18.64352583,
+      "longitude": 73.75462045,
+      "distance": "577",
+      "phone": "88885 88880",
+      "website": "https://ojasmultispecialityhospital.com/",
+      "rating": 4.2
+    },
+    {
+      "id": 11,
+      "name": "Lokmanya Hospital Chinchwad",
+      "latitude": 18.63731989,
+      "longitude": 73.79028583,
+      "distance": "584",
+      "phone": "9552551510",
+      "website": "https://lokmanyahospitals.in/",
+      "rating": 4.3
+    }
+  ]
+
+}

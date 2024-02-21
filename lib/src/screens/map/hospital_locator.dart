@@ -49,7 +49,7 @@ class _MyAppState extends State<map> {
         body: BlocBuilder<MapBloc, MapState>(
         builder: (context, state) {
           if (state is MapLoaded) {
-            print(state.hospitals);
+            print("state data is printed ${state.hospitals}");
             return GoogleMap(
                 onMapCreated: _onMapCreated,
                 initialCameraPosition: CameraPosition(
