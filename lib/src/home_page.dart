@@ -30,11 +30,28 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text(appName),
-        actions:[
+        title: Text(appName),
+        actions: [
           Row(
             children: [
-              LanguageSwitcherButton(),
+              DropdownButton<String>(
+                onChanged: (String? languageCode) {
+                  if (languageCode == 'en') {
+                    convertToEnglish();
+                  }
+                  else {
+                    convertToMarathi();
+                  }
+                  setState(() {});
+                },
+                items: <String>['en', 'mr'] // Example language codes
+                    .map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
               if (currentUser != null && currentUser!.photoURL != null)
                 GestureDetector(
                   onTap: () {
@@ -85,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
             _selectedIndex = index;
           });
         },
-        items:  [
+        items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.local_hospital),
             label: hospitalHeader,
@@ -100,34 +117,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-    );
-  }
-}
-class LanguageSwitcherButton extends StatefulWidget {
-  @override
-  State<LanguageSwitcherButton> createState() => _LanguageSwitcherButtonState();
-}
-
-class _LanguageSwitcherButtonState extends State<LanguageSwitcherButton> {
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      onChanged: (String? languageCode) {
-        if(languageCode == 'en'){
-          convertToEnglish();
-        }
-        else{
-          convertToMarathi();
-        }
-        setState(() {});
-      },
-      items: <String>['en', 'mr'] // Example language codes
-          .map((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
     );
   }
 }
