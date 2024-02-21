@@ -96,6 +96,23 @@ String toggleWebCam = "Toggle WebCam";
 String justInTime = "Just in time!";
 String itsTimeForAppointment = "It's time for the appointment!";
 
+String appBarTitle = 'Add Reminder';
+String selectOptionHint = 'Select an option';
+String intakeReminder = 'Intake Reminder';
+String dosageInstructions = 'Dosage Instructions';
+String refillAlerts = 'Refill Alerts';
+String enterFieldLabel = 'Enter ';
+String pleaseFillAllFieldsSnackBar = 'Please fill all fields.';
+String giveRating = "Give Rating";
+String chatWithBot = "MediBot";
+String typeAMessage = "Type a message";
+String chat24by7 = "Chat With AI Assistant 24/7";
+String comments = "Comments";
+
+String addReminder = "Add Reminder";
+String yourReminders = "Your Reminders";
+
+
 convertToMarathi() {
   appName = "मेडीकनेक्ट";
 
@@ -111,7 +128,7 @@ convertToMarathi() {
   registerNow = "आता नोंदणी करा";
 
   passCantBeEmpty = "पासवर्ड रिक्त असू शकत नाही";
-  passDontMatch = "पासवर्ड मेल करत नाही";
+  passDontMatch = "पासवर्ड जुळत  करत नाही";
   registrationHeader = "नोंदणी";
   name = "नाव";
   pleaseEnterName = "कृपया आपलं नाव प्रविष्ट करा";
@@ -146,12 +163,12 @@ convertToMarathi() {
   fireDepartmentNumber = "१०१";
   police = "पोलिस";
   policeNumber = "११२";
-  firstAidVideo = "पहिला मदत व्हिडिओ";
+  firstAidVideo = "प्रथमोपचार";
   contactFamily = "कुटुंबाशी संपर्क";
 
   profileHeader = "प्रोफाइल";
   addRecord = "रेकॉर्ड जोडा";
-  pastRecords = "गेल्या रेकॉर्ड्स";
+  pastRecords = "जुने रेकॉर्ड्स";
 
   addAppointments = "अपॉइंटमेंट जोडा";
   callADoctor = "डॉक्टरला कॉल करा";
@@ -171,14 +188,14 @@ convertToMarathi() {
   doctorC = "डॉ. आदित्य गुप्ता";
 
   pleaseFillAllFields = "कृपया सर्व फील्ड्स भरा.";
-  reasonForAppointment = "अपॉइंटमेंट का?";
+  reasonForAppointment = "अपॉइंटमेंट घेण्याचे कारण?";
   platformDoNotSupportLogin = "प्लॅटफॉर्म लॉगिन समर्थित नाही";
   somethingWentWrong = "काहीतरी चूक होत आहे!";
   loggedOutSuccessfully = "यशस्वीरित्या लॉगआउट केले";
   accountCreatedSuccessfully = "खाते यशस्वीरित्या तयार केले";
   weakPasswordProvided = "प्रदान केलेला पासवर्ड खुप दुर्बल आहे.";
-  accountAlreadyExist = "ईमेलसाठी आधीच खाते अस्तित्वात आहे.";
-  userNotFound = "त्या ईमेलसाठी कोणताही वापरकर्ता सापडला नाही.";
+  accountAlreadyExist = "या ईमेलसाठी आधीच खाते अस्तित्वात आहे.";
+  userNotFound = "या  ईमेलसाठी कोणताही वापरकर्ता सापडला नाही.";
   wrongPasswordForUser = "वापरकर्त्यासाठी अयोग्य पासवर्ड प्रदान केला गेला आहे.";
   verificationEmailSent = "सत्यापन ईमेल पाठविला गेला आहे";
   passwordResetLinkSent = "पासवर्ड रीसेट लिंक पाठविला गेला आहे";
@@ -193,4 +210,25 @@ convertToMarathi() {
 
   justInTime = "खालील समयात!";
   itsTimeForAppointment = "अपॉइंटमेंट साठी वेळ आहे!";
+
+   appBarTitle = 'संदेश जोडा';
+   selectOptionHint = 'एक पर्याय निवडा';
+   intakeReminder = 'सेवन अधिसूचना';
+   dosageInstructions = 'मात्रा निर्देश';
+   refillAlerts = 'रिफिल अलर्ट्स';
+   enterFieldLabel = 'प्रविष्ट करा ';
+   pleaseFillAllFieldsSnackBar = 'कृपया सर्व फील्ड्स भरा.';
+   giveRating = "रेटिंग द्या";
+   chatWithBot = "मेडीबॉट";
+
+   typeAMessage = "संदेश टाइप करा";
+   chat24by7 = "24/7 एआय सहाय्यकशी संवाद";
+
+   comments = "टिप्पण्या";
+
+   addReminder = "स्मरणपत्रे जोडा";
+   yourReminders = "तुमचे स्मरणपत्रे";
+
+
+
 }

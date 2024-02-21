@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:medi_connect/src/screens/doctor_chat/contact_doctor.dart';
 
 import '../../constants/appointments.dart';
@@ -107,20 +108,22 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                   itemCount: scheduledAppointments.length,
                   itemBuilder: (BuildContext context, int index) {
                     final appointment = scheduledAppointments[index];
-                    return ListTile(
-                      title: Text('$appointments ${index + 1}'),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Date: ${appointment.date.toDate()}'),
-                          // Text('$date: ${appointment.date.substring(0,10)}'),
-                          Text('$hospitalHeader: ${appointment.hospital}'),
-                          Text('$doctor: ${appointment.doctor}'),
-                        ],
+                    return Slidable(
+                      child: ListTile(
+                        title: Text('$appointments ${index + 1}'),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Date: ${appointment.date.toDate()}'),
+                            // Text('$date: ${appointment.date.substring(0,10)}'),
+                            Text('$hospitalHeader: ${appointment.hospital}'),
+                            Text('$doctor: ${appointment.doctor}'),
+                          ],
+                        ),
+                        onTap: () {
+                          // Handle tapping on a scheduled appointment
+                        },
                       ),
-                      onTap: () {
-                        // Handle tapping on a scheduled appointment
-                      },
                     );
                   },
                 ),

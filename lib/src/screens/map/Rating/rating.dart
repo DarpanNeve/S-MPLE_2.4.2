@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:medi_connect/src/screens/map/hospital_model.dart';
+import 'package:medi_connect/src/utils/strings_english.dart';
 
 class GiveRating extends StatefulWidget {
   final Hospital hospital;
@@ -52,7 +53,7 @@ class _GiveRatingState extends State<GiveRating> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Give Rating'),
+        title: Text(giveRating),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -80,7 +81,7 @@ class _GiveRatingState extends State<GiveRating> {
               SizedBox(height: 20),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: 'Comment',
+                  labelText: comments,
                   border: OutlineInputBorder(),
                 ),
                 onChanged: (value) {
@@ -99,7 +100,7 @@ class _GiveRatingState extends State<GiveRating> {
                   submitRatingAndComment();
                   // You can add logic here to submit the rating and comment to a database
                 },
-                child: Text('Submit'),
+                child: Text(submit),
               ),
             ],
           ),

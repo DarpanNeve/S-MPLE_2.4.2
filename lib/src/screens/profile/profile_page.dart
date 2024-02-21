@@ -126,7 +126,7 @@ class _ProfilePageState extends State<ProfilePage> {
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) => AddReminder()));
         },
-        label: Text('Add Reminder'),
+        label: Text(addReminder),
         icon: Icon(Icons.add),
 
       ),
@@ -206,7 +206,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "Your Reminders",
+                    yourReminders,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ],

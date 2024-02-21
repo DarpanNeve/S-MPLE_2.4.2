@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
+import '../../../utils/strings_english.dart';
+
 class ChatBot extends StatefulWidget {
   const ChatBot({super.key});
 
@@ -62,7 +64,7 @@ class _ChatBotState extends State<ChatBot> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Chat With AI Assistant 24/7"),
+        title: Text(chat24by7),
       ),
        body: Column(
          children: [
@@ -97,7 +99,7 @@ class _ChatBotState extends State<ChatBot> {
                    child: TextField(
                      controller: _textController,
                      decoration: InputDecoration(
-                       hintText: "Type a message",
+                       hintText: typeAMessage,
                        border: OutlineInputBorder(
                            borderRadius: BorderRadius.circular(10.0),
                            borderSide: BorderSide.none),

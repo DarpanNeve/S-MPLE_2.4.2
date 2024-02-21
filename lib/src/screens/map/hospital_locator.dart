@@ -78,7 +78,7 @@ class _MyAppState extends State<map> {
         onPressed: () {
              Navigator.push(context, MaterialPageRoute(builder: (context) => ChatBot()));
         },
-        label: Text('Chat With Bot'),
+        label: Text(chatWithBot),
         icon: Icon(Icons.chat),
 
       ),
@@ -183,7 +183,7 @@ Widget _buildHospitalInfo(Hospital hospital,BuildContext context,List<Rating> ra
                       Navigator.push(context, MaterialPageRoute(builder: (context) => GiveRating(hospital: hospital,)));
 
                     },
-                    child: Text("Give Rating")
+                    child: Text(giveRating)
                 ),
               ],
             ),

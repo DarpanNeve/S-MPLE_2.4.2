@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../feature/fcm/notification_initialiser.dart';
+import '../../../utils/strings_english.dart';
 
 class AddReminder extends StatefulWidget {
   const AddReminder({super.key});
@@ -66,7 +67,7 @@ class _AddReminderState extends State<AddReminder> {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Please fill all fields.'),
+          content: Text(pleaseFillAllFieldsSnackBar),
           backgroundColor: Colors.red,
         ),
       );
@@ -77,66 +78,77 @@ class _AddReminderState extends State<AddReminder> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Reminder'),
+        title: Text(appBarTitle),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            DropdownButton<String>(
-              hint: Text('Select an option'),
-              value: _selectedOption,
-              onChanged: (String? newValue) {
-                setState(() {
-                  _selectedOption = newValue;
-                });
-              },
-              items: <String>[
-                'Intake Reminder',
-                'Dosage Instructions',
-                'Refill Alerts',
-              ].map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            ),
-            SizedBox(height: 20),
-            if (_selectedOption == 'Intake Reminder' ||
-                _selectedOption == 'Dosage Instructions' ||
-                _selectedOption == 'Refill Alerts')
-              TextField(
-                controller: _textEditingController,
-                decoration: InputDecoration(
-                  labelText: 'Enter ${_selectedOption?.toLowerCase()}',
-                  border: OutlineInputBorder(),
+        child: Container(
+          width: MediaQuery.of(context).size.width*1,
+          height: MediaQuery.of(context).size.height*0.45,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: Colors.blueGrey),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Column(
+              children: [
+                DropdownButton<String>(
+                  hint: Text(selectOptionHint),
+                  value: _selectedOption,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedOption = newValue;
+                    });
+                  },
+                  items: <String>[
+                    intakeReminder,
+                    dosageInstructions,
+                    refillAlerts,
+                  ].map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
                 ),
-              ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => _selectTime(context),
-              child: const Text('Select Time'),
-            ),
-            SizedBox(height: 20),
-            if (_selectedTime != null)
-              Text(
-                'Selected Time: ${_selectedTime!.format(context)}',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue,
+                SizedBox(height: 20),
+                if (_selectedOption == intakeReminder ||
+                    _selectedOption == dosageInstructions ||
+                    _selectedOption == refillAlerts)
+                  TextField(
+                    controller: _textEditingController,
+                    decoration: InputDecoration(
+                      labelText: '$enterFieldLabel ${_selectedOption?.toLowerCase()}',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () => _selectTime(context),
+                  child: Text(selectTime),
                 ),
-              ),
-            const SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-                // Implement your logic to handle the user input
-                // You can access the input value using _textEditingController.text
-                _submitReminder();
-              },
-              child: Text('Submit'),
+                SizedBox(height: 20),
+                if (_selectedTime != null)
+                  Text(
+                    '$selectTime: ${_selectedTime!.format(context)}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue,
+                    ),
+                  ),
+                const SizedBox(height: 16.0),
+                ElevatedButton(
+                  onPressed: () {
+                    // Implement your logic to handle the user input
+                    // You can access the input value using _textEditingController.text
+                    _submitReminder();
+                  },
+                  child: Text(submit),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
