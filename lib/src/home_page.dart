@@ -5,6 +5,7 @@ import 'package:medi_connect/src/screens/emergency_screen.dart';
 import 'package:medi_connect/src/screens/map/hospital_locator.dart';
 import 'package:medi_connect/src/screens/map/nearby_hospital.dart';
 import 'package:medi_connect/src/screens/profile/profile_page.dart';
+import 'package:medi_connect/src/utils/convertToEnglish.dart';
 import 'package:medi_connect/src/utils/strings_english.dart';
 
 
@@ -31,43 +32,49 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title:  Text(appName),
         actions:[
-          if (currentUser != null && currentUser!.photoURL != null)
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ProfilePage(),
+          Row(
+            children: [
+              LanguageSwitcherButton(),
+              if (currentUser != null && currentUser!.photoURL != null)
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ProfilePage(),
+                      ),
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                        currentUser!.photoURL!,
+                      ),
+                    ),
                   ),
-                );
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                    currentUser!.photoURL!,
+                )
+              else
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ProfilePage(),
+                      ),
+                    );
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.person,
+                      size: 30,
+                    ),
                   ),
                 ),
-              ),
-            )
-          else
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ProfilePage(),
-                  ),
-                );
-              },
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.person,
-                  size: 30,
-                ),
-              ),
-            ),
+            ],
+
+          )
         ],
       ),
       body: _tabs[_selectedIndex],
@@ -93,6 +100,34 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+    );
+  }
+}
+class LanguageSwitcherButton extends StatefulWidget {
+  @override
+  State<LanguageSwitcherButton> createState() => _LanguageSwitcherButtonState();
+}
+
+class _LanguageSwitcherButtonState extends State<LanguageSwitcherButton> {
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      onChanged: (String? languageCode) {
+        if(languageCode == 'en'){
+          convertToEnglish();
+        }
+        else{
+          convertToMarathi();
+        }
+        setState(() {});
+      },
+      items: <String>['en', 'mr'] // Example language codes
+          .map((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
     );
   }
 }
