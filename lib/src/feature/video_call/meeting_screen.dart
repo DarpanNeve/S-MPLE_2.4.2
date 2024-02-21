@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:videosdk/videosdk.dart';
 import './participant_tile.dart';
+import 'join_screen.dart';
 import 'meeting_controls.dart';
 
 class MeetingScreen extends StatefulWidget {
@@ -28,7 +29,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
     _room = VideoSDK.createRoom(
         roomId: widget.meetingId,
         token: widget.token,
-        displayName: "Flutter User",
+        displayName: "John Doe",
         micEnabled: micEnabled,
         camEnabled: camEnabled,
         defaultCameraIndex: kIsWeb
@@ -77,7 +78,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
   }
 
   // onbackButton pressed leave the room
-  _onWillPop(bool ans) async {
+  Future<bool> _onWillPop() async {
     _room.leave();
     return true;
   }
@@ -85,10 +86,9 @@ class _MeetingScreenState extends State<MeetingScreen> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      onPopInvoked: _onWillPop(true),
+    return WillPopScope(
+      onWillPop: () => _onWillPop(),
       child: Scaffold(
-
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(

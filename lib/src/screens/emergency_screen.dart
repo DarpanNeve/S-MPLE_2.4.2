@@ -48,21 +48,19 @@ class EmergencyScreen extends StatelessWidget {
               ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Expanded(
-                  child: YoutubePlayer(
-                    controller: YoutubePlayerController(
-                      initialVideoId: 'XjMvBW9KDLA',
-                      flags: YoutubePlayerFlags(
-                        autoPlay: true,
-                        mute: false,
-                        forceHD: false,
-                      ),
+                child: YoutubePlayer(
+                  controller: YoutubePlayerController(
+                    initialVideoId: 'XjMvBW9KDLA',
+                    flags: YoutubePlayerFlags(
+                      autoPlay: true,
+                      mute: false,
+                      forceHD: false,
                     ),
-                    showVideoProgressIndicator: true,
-                    onReady: () {
-                      // Listener for player ready
-                    },
                   ),
+                  showVideoProgressIndicator: true,
+                  onReady: () {
+                    // Listener for player ready
+                  },
                 ),
               ),
             ),

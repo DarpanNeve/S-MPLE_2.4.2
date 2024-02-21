@@ -48,6 +48,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           FloatingActionButton.extended(
+            heroTag: 'addAppointment',
             label: const Text('Add Appointment'),
             onPressed: () async {
               final appointment = await Navigator.of(context).push<Appointment>(
@@ -70,6 +71,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
           ),
 
           FloatingActionButton.extended(
+            heroTag: 'contactDoctor',
             label: const Text('Call a doctor'),
             onPressed: () async {
               Navigator.of(context).push(
