@@ -3,6 +3,15 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  awesome_notifications
+  cloud_firestore
+  firebase_auth
+  firebase_core
+  firebase_storage
+  flutter_webrtc
+  geolocator_windows
+  url_launcher_windows
+  videosdk
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
