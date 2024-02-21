@@ -28,4 +28,15 @@ class Hospital {
       reviews: double.parse(map['reviews'].toString()),
     );
   }
+  factory Hospital.fromJson(Map<String, dynamic> json) {
+    return Hospital(
+      name: json['name'] as String,
+      latitude: json['latitude'] as double,
+      longitude: json['longitude'] as double,
+      elevation: json['elevation'] as String,
+      phone: json['phone'] as String,
+      website: json['website'] as String,
+      reviews: json['reviews'] as double,
+    );
+  }
 }
