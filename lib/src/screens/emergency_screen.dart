@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import '../utils/strings_english.dart';
+
 class EmergencyScreen extends StatelessWidget {
   const EmergencyScreen({Key? key}) : super(key: key);
 
@@ -17,7 +19,7 @@ class EmergencyScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Emergency Numbers',
+              emergencyNumbers,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary),
             ),
             const SizedBox(height: 20),
@@ -29,15 +31,15 @@ class EmergencyScreen extends StatelessWidget {
               child: ListView(
                 shrinkWrap: true,
                 children: [
-                  _buildEmergencyItem(context, Icons.local_hospital, 'Ambulance', '108'),
-                  _buildEmergencyItem(context, Icons.local_fire_department, 'Fire Department', '112'),
-                  _buildEmergencyItem(context, Icons.local_police, 'Police', '112'),
+                  _buildEmergencyItem(context, Icons.local_hospital, ambulance, ambulanceNumber),
+                  _buildEmergencyItem(context, Icons.local_fire_department, fireDepartment, fireDepartmentNumber),
+                  _buildEmergencyItem(context, Icons.local_police, police, policeNumber),
                 ],
               ),
             ),
             const SizedBox(height: 20),
             Text(
-              'First Aid Video',
+              firstAidVideo,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary),
             ),
             const SizedBox(height: 10),
@@ -68,7 +70,7 @@ class EmergencyScreen extends StatelessWidget {
             ElevatedButton(onPressed: () {
 
             }, child: Text(
-              "Contact Family"
+                contactFamily
             ))
           ],
         ),

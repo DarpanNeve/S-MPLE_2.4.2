@@ -5,6 +5,7 @@ import 'package:medi_connect/src/screens/emergency_screen.dart';
 import 'package:medi_connect/src/screens/map/hospital_locator.dart';
 import 'package:medi_connect/src/screens/map/nearby_hospital.dart';
 import 'package:medi_connect/src/screens/profile/profile_page.dart';
+import 'package:medi_connect/src/utils/strings_english.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -28,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Medi Connect'),
+        title:  Text(appName),
         actions:[
           if (currentUser != null && currentUser!.photoURL != null)
             GestureDetector(
@@ -77,18 +78,18 @@ class _HomeScreenState extends State<HomeScreen> {
             _selectedIndex = index;
           });
         },
-        items: const [
+        items:  [
           BottomNavigationBarItem(
             icon: Icon(Icons.local_hospital),
-            label: 'Hospitals',
+            label: hospitalHeader,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.event),
-            label: 'Appointments',
+            label: appointments,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.sos),
-            label: 'Emergency',
+            label: emergency,
           ),
         ],
       ),

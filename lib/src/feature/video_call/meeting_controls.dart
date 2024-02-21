@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/strings_english.dart';
+
 class MeetingControls extends StatelessWidget {
   final void Function() onToggleMicButtonPressed;
   final void Function() onToggleCameraButtonPressed;
@@ -17,12 +19,12 @@ class MeetingControls extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         ElevatedButton(
-            onPressed: onLeaveButtonPressed, child: const Text('Leave')),
+            onPressed: onLeaveButtonPressed, child:  Text(leave)),
         ElevatedButton(
-            onPressed: onToggleMicButtonPressed, child: const Text('Toggle Mic')),
+            onPressed: onToggleMicButtonPressed, child:  Text(toggleMic)),
         ElevatedButton(
             onPressed: onToggleCameraButtonPressed,
-            child: const Text('Toggle WebCam')),
+            child:  Text(toggleWebCam)),
       ],
     );
   }

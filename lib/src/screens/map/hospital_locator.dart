@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
+import '../../utils/strings_english.dart';
 import '../appointments/book_appointment.dart';
 import 'bloc/map_bloc.dart';
 import 'hospital_model.dart';
@@ -49,62 +50,61 @@ class _MyAppState extends State<map> {
                 myLocationEnabled: true,
                 markers: {
                   Marker(
-                    markerId: MarkerId('Dhanwantari Hospital Nigdi'),
+                    markerId: MarkerId(dhanwantiHospitalNigdi),
                     position: LatLng(18.65586645, 73.76812952),
                     onTap: () {
                       _showHospitalInfoBottomSheet(context, new Hospital(
-                          name: 'Dhanwantari Hospital Nigdi',
+                          name: dhanwantiHospitalNigdi,
                           latitude: 18.65586645,
                           longitude: 73.76812952,
                           elevation: '602',
                           phone: '8605018483',
-                          website: 'http://www.dhanwantarihospital.in/',
+                          website: dhanwantiHospitalNigdiSite,
                           reviews: 3.3
                       ));
                     },
                   ),
                   Marker(
-                    markerId: MarkerId(
-                        'PDEA\'s Ayurveda Rugnalaya & Sterling Multi Speciality Hospital ARSMH'),
+                    markerId: MarkerId(pdaAyurvedicHospital),
                     position: LatLng(18.6548547, 73.7696807),
                     onTap: () {
                       _showHospitalInfoBottomSheet(context, new Hospital(
-                          name: 'PDEA\'s Ayurveda Rugnalaya & Sterling Multi Speciality Hospital ARSMH',
+                          name: pdaAyurvedicHospital,
                           latitude: 18.6548547,
                           longitude: 73.7696807,
                           elevation: '601',
                           phone: '2027332700',
-                          website: 'http://www.sterlingmultispecialityhospital.com/',
+                          website: pdaAyurvedicHospitalSite,
                           reviews: 3.3
                       ));
                     },
                   ),
                   Marker(
-                    markerId: MarkerId('Diwan Hospital Pune'),
+                    markerId: MarkerId(diwanHospitalPune),
                     position: LatLng(18.6579111, 73.7762953),
                     onTap: () {
                       _showHospitalInfoBottomSheet(context, new Hospital(
-                          name: 'Diwan Hospital Pune',
+                          name: diwanHospitalPune,
                           latitude: 18.6579111,
                           longitude: 73.7762953,
                           elevation: '593',
                           phone: '8080707691',
-                          website: 'https://www.diwanhospitalpune.com/',
+                          website: diwanHospitalPuneSite,
                           reviews: 4.4
                       ));
                     },
                   ),
                   Marker(
-                    markerId: MarkerId('Aditi Multispeciality Hospital'),
+                    markerId: MarkerId(aditiMultiHospital),
                     position: LatLng(18.6561789, 73.77319634),
                     onTap: () {
                       _showHospitalInfoBottomSheet(context, new Hospital(
-                          name: 'Aditi Multispeciality Hospital',
+                          name: aditiMultiHospital,
                           latitude: 18.6561789,
                           longitude: 73.77319634,
                           elevation: '594',
                           phone: '9881212100',
-                          website: 'http://www.aditihospital.com/',
+                          website: aditiMultiHospitalSite,
                           reviews: 4.6
                       ));
                     },
@@ -127,7 +127,7 @@ class _MyAppState extends State<map> {
                   onTap: (){
                     BlocProvider.of<MapBloc>(context).add(MapLoad());
                   },
-                  child: Text('Press to load the map')),
+                  child: Text(pressToLoadMap)),
 
             ),
           );
@@ -156,15 +156,15 @@ Widget _buildHospitalInfo(Hospital hospital,BuildContext context) {
             ),
             Padding(
               padding: EdgeInsets.all(8.0),
-              child: Text('Rating: ${hospital.reviews}'),
+              child: Text('$rating: ${hospital.reviews}'),
             ),
             Padding(
               padding: EdgeInsets.all(8.0),
-              child: Text('Phone: ${hospital.phone}'),
+              child: Text('$phone: ${hospital.phone}'),
             ),
             Padding(
               padding: EdgeInsets.all(8.0),
-              child: Text('Website: ${hospital.website}'),
+              child: Text('$website: ${hospital.website}'),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -175,7 +175,7 @@ Widget _buildHospitalInfo(Hospital hospital,BuildContext context) {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => BookAppointmentScreen()));
     
                     },
-                    child: Text('Book Appointment')
+                    child: Text(bookAppointment)
                 ),
               ],
             )

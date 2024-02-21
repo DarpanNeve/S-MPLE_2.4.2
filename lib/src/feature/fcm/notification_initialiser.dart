@@ -1,6 +1,8 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 
+import '../../utils/strings_english.dart';
+
 class notification {
   notificationInitialiser() {
     AwesomeNotifications().initialize(
@@ -43,14 +45,14 @@ class notification {
       content: NotificationContent(
         id: time.day,
         channelKey: 'basic_channel',
-        title: 'Just in time!',
+        title: justInTime,
         // body: 'This notification was scheduled to shows at ' +
         //     time.toLocal().toString() +
         //     time.timeZoneName +
         //     '(' +
         //     time.toUtc().toString() +
         //     ' utc)',
-        body:"It's time for the appointment!",
+        body: itsTimeForAppointment,
         wakeUpScreen: true,
         category: NotificationCategory.Reminder,
         notificationLayout: NotificationLayout.BigPicture,

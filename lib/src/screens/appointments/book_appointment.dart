@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:medi_connect/src/feature/fcm/notification.dart';
 import 'package:medi_connect/src/feature/fcm/notification_initialiser.dart';
+import 'package:medi_connect/src/utils/strings_english.dart';
 
 import '../../widget/snackbar.dart';
 
@@ -22,15 +23,15 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   String? _selectedHospital;
 
   final List<String> hospitals = [
-    'Dhanwantari Hospital Nigdi',
-    'PDEAs Ayurveda Rugnalaya & Sterling Multi Speciality Hospital ARSMH',
-    'Diwan Hospital Pune',
+    dhanwantiHospitalNigdi,
+    pdaAyurvedicHospital,
+    diwanHospitalPune,
   ];
 
   final List<String> doctors = [
-    'Dr. Sandeep Vaishya',
-    'Dr. Naresh Trehan',
-    'Dr. Aditya Gupta',
+    doctorA,
+    doctorB,
+    doctorC
   ];
 
   Future<void> _selectDate(BuildContext context) async {
@@ -99,7 +100,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Please fill all fields.'),
+          content: Text(pleaseFillAllFields),
           backgroundColor: Colors.red,
         ),
       );
@@ -110,7 +111,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Book Appointment'),
+        title:  Text(bookAppointment),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -119,12 +120,12 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
           children: [
             ElevatedButton(
               onPressed: () => _selectDate(context),
-              child: const Text('Select Date'),
+              child: Text(selectDate),
             ),
             const SizedBox(height: 16.0),
             if (_selectedDate != null)
               Text(
-                'Selected Date: ${_selectedDate!.toLocal()}',
+                '$selectDate: ${_selectedDate!.toLocal()}',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.blue,
@@ -133,12 +134,12 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
             const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () => _selectTime(context),
-              child: const Text('Select Time'),
+              child: Text(selectTime),
             ),
             const SizedBox(height: 16.0),
             if (_selectedTime != null)
               Text(
-                'Selected Time: ${_selectedTime!.format(context)}',
+                '$selectTime: ${_selectedTime!.format(context)}',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.blue,
@@ -162,8 +163,8 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                     ),
                   );
                 }).toList(),
-                decoration: const InputDecoration(
-                  labelText: 'Select Hospital',
+                decoration:  InputDecoration(
+                  labelText: selectHospital,
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -182,15 +183,15 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                   child: Text(doctor),
                 );
               }).toList(),
-              decoration: const InputDecoration(
-                labelText: 'Select Doctor',
+              decoration:  InputDecoration(
+                labelText: selectDoctor,
                 border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 16.0),
             TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Reason for Appointment',
+              decoration:  InputDecoration(
+                labelText: reasonForAppointment,
                 border: OutlineInputBorder(),
               ),
               maxLines: 3,
@@ -203,7 +204,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
             const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _submitAppointment,
-              child: const Text('Book Appointment'),
+              child: Text(bookAppointment),
             ),
           ],
         ),

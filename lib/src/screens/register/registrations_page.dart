@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../utils/strings_english.dart';
 import '../../widget/snackbar.dart';
 import '../../feature/login/auth_service.dart';
 
@@ -29,9 +30,9 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
         Navigator.pop(context);
       }
     } else if (_password.isEmpty) {
-      showSnackBar("Password can't be empty", context, Icons.error, Colors.red);
+      showSnackBar(passCantBeEmpty, context, Icons.error, Colors.red);
     } else {
-      showSnackBar("Password do not match", context, Icons.error, Colors.red);
+      showSnackBar(passDontMatch, context, Icons.error, Colors.red);
     }
   }
 
@@ -49,7 +50,7 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
                 Image.asset('assets/Images/logo-remove-bg.png',height: MediaQuery.of(context).size.height*0.2,
                   color: Theme.of(context).colorScheme.inverseSurface,),
                 Text(
-                  'Registration',
+                  registrationHeader,
                   style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.bold,
@@ -64,12 +65,12 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
                       children: [
                         TextFormField(
                           decoration: InputDecoration(
-                            labelText: 'Name',
+                            labelText: name,
                             icon: const Icon(Icons.person),
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Please enter your name';
+                              return pleaseEnterName;
                             }
                             return null;
                           },
@@ -80,7 +81,7 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
                         const SizedBox(height: 10),
                         TextFormField(
                           decoration: InputDecoration(
-                            labelText: 'Email',
+                            labelText: email,
                             icon: const Icon(Icons.email),
                           ),
                           onSaved: (value) {
@@ -88,7 +89,7 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
                           },
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Please enter your email';
+                              return enterEmail;
                             }
                             return null;
                           },
@@ -97,12 +98,12 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
                         TextFormField(
                           obscureText: true,
                           decoration: InputDecoration(
-                            labelText: 'Password',
+                            labelText: password,
                             icon: const Icon(Icons.lock),
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Please enter your password';
+                              return enterPassword;
                             }
                             return null;
                           },
@@ -114,15 +115,15 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
                         TextFormField(
                           obscureText: true,
                           decoration: InputDecoration(
-                            labelText: 'Confirm Password',
+                            labelText: confirmPassword,
                             icon: const Icon(Icons.lock),
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Please confirm your password';
+                              return pleaseConfirmPass;
                             }
                             if (value != _password) {
-                              return 'Passwords do not match';
+                              return passDontMatch;
                             }
                             return null;
                           },
@@ -133,7 +134,7 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
                         const SizedBox(height: 20),
                         ElevatedButton(
                           onPressed: _signUp,
-                          child: const Text('Submit'),
+                          child:  Text(submit),
                         ),
                       ],
                     ),
@@ -143,12 +144,12 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Already have an account?'),
+                    Text(alreadyHaveAccount),
                     TextButton(
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      child: const Text('Login'),
+                      child:  Text(login),
                     ),
                   ],
                 ),

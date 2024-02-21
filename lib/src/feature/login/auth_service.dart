@@ -7,6 +7,7 @@ import 'package:medi_connect/src/home_page.dart';
 
 import '../../screens/login/login_page.dart';
 import '../../screens/map/bloc/map_bloc.dart';
+import '../../utils/strings_english.dart';
 import '../../widget/snackbar.dart';
 import '../user_info_update.dart';
 
@@ -61,10 +62,10 @@ class AuthService {
         return await FirebaseAuth.instance.signInWithCredential(credential);
       } else {
         showSnackBar(
-            "Platform do not support login", context, Icons.error, Colors.red);
+            platformDoNotSupportLogin, context, Icons.error, Colors.red);
       }
     } catch (e) {
-      showSnackBar("Something gone wrong!", context, Icons.error, Colors.red);
+      showSnackBar(somethingWentWrong, context, Icons.error, Colors.red);
     }
   }
 
@@ -77,11 +78,11 @@ class AuthService {
       await FirebaseAuth.instance.signOut();
       if (context.mounted) {
         showSnackBar(
-            "Logged Out Successfully", context, Icons.done, Colors.green);
+            loggedOutSuccessfully, context, Icons.done, Colors.green);
       }
     } catch (e) {
       if (context.mounted) {
-        showSnackBar("Something gone wrong!", context, Icons.error, Colors.red);
+        showSnackBar(somethingWentWrong, context, Icons.error, Colors.red);
       }
     }
   }
@@ -97,23 +98,23 @@ class AuthService {
       await FirebaseAuth.instance.currentUser!.updateDisplayName(name);
       if (context.mounted) {
         showSnackBar(
-            "Account created successfully", context, Icons.done, Colors.green);
+            accountCreatedSuccessfully, context, Icons.done, Colors.green);
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         if (context.mounted) {
-          showSnackBar("The password provided is too weak.", context,
+          showSnackBar(weakPasswordProvided, context,
               Icons.error, Colors.red);
         }
       } else if (e.code == 'email-already-in-use') {
         if (context.mounted) {
-          showSnackBar("The account already exists for that email.", context,
+          showSnackBar(accountAlreadyExist, context,
               Icons.error, Colors.red);
         }
       }
     } catch (e) {
       if (context.mounted) {
-        showSnackBar("Something gone wrong!", context, Icons.error, Colors.red);
+        showSnackBar(somethingWentWrong, context, Icons.error, Colors.red);
       }
     }
   }
@@ -126,12 +127,12 @@ class AuthService {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         if (context.mounted) {
-          showSnackBar("No user found for that email.", context, Icons.error,
+          showSnackBar(userNotFound, context, Icons.error,
               Colors.red);
         }
       } else if (e.code == 'wrong-password') {
         if (context.mounted) {
-          showSnackBar("Wrong password provided for that user.", context,
+          showSnackBar(wrongPasswordForUser, context,
               Icons.error, Colors.red);
         }
       }
@@ -150,7 +151,7 @@ class AuthService {
     await FirebaseAuth.instance.currentUser!.sendEmailVerification();
     if (context.mounted) {
       showSnackBar(
-          "Verification email send", context, Icons.done, Colors.green);
+          verificationEmailSent, context, Icons.done, Colors.green);
     }
   }
 
@@ -159,11 +160,11 @@ class AuthService {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: mail);
       if (context.mounted) {
         showSnackBar(
-            'Password reset link sent', context, Icons.done, Colors.green);
+            passwordResetLinkSent, context, Icons.done, Colors.green);
       }
     } catch (e) {
       if (context.mounted) {
-        showSnackBar('Something went wrong', context, Icons.error, Colors.red);
+        showSnackBar(somethingWentWrong, context, Icons.error, Colors.red);
       }
     }
   }

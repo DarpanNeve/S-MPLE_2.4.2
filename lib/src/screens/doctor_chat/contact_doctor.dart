@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:medi_connect/src/feature/video_call/join_screen.dart';
 import 'package:medi_connect/src/constants/dummy_doctor_list.dart';
 
+import '../../utils/strings_english.dart';
+
 class ContactDoctor extends StatelessWidget {
   const ContactDoctor({super.key});
 
@@ -9,7 +11,7 @@ class ContactDoctor extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Contact Doctor'),
+          title:  Text(contactDoctor),
         ),
         body: ListView.builder(
           itemBuilder: (context, index) {

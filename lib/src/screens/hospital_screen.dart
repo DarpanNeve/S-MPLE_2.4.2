@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:medi_connect/src/feature/login/auth_service.dart';
 
+import '../utils/strings_english.dart';
+
 class HospitalScreen extends StatelessWidget {
   const HospitalScreen({super.key});
 
@@ -8,7 +10,7 @@ class HospitalScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hospitals'),
+        title:  Text(hospitalHeader),
         actions: [
           IconButton(
             onPressed: () {
@@ -42,7 +44,7 @@ class HospitalScreen extends StatelessWidget {
                   onPressed: () {
                     // Handle booking appointment button press
                   },
-                  child: const Text('Book Appointment'),
+                  child: Text(bookAppointment),
                 ),
               ],
             ),

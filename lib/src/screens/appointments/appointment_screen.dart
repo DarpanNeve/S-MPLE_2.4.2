@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:medi_connect/src/screens/doctor_chat/contact_doctor.dart';
 
 import '../../constants/appointments.dart';
+import '../../utils/strings_english.dart';
 import 'book_appointment.dart';
 
 class AppointmentScreen extends StatefulWidget {
@@ -49,7 +50,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
         children: [
           FloatingActionButton.extended(
             heroTag: 'addAppointment',
-            label: const Text('Add Appointment'),
+            label:  Text(addAppointments),
             onPressed: () async {
               final appointment = await Navigator.of(context).push<Appointment>(
                 MaterialPageRoute(
@@ -72,7 +73,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
 
           FloatingActionButton.extended(
             heroTag: 'contactDoctor',
-            label: const Text('Call a doctor'),
+            label:  Text(callADoctor),
             onPressed: () async {
               Navigator.of(context).push(
                 MaterialPageRoute(
@@ -92,7 +93,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Scheduled Appointments',
+              scheduleAppointments,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
@@ -107,13 +108,13 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                   itemBuilder: (BuildContext context, int index) {
                     final appointment = scheduledAppointments[index];
                     return ListTile(
-                      title: Text('Appointment ${index + 1}'),
+                      title: Text('$appointments ${index + 1}'),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Date: ${appointment.date}, Time: ${appointment.time}'),
-                          Text('Hospital: ${appointment.hospital}'),
-                          Text('Doctor: ${appointment.doctor}'),
+                          Text('$date: ${appointment.date}, $time: ${appointment.time}'),
+                          Text('$hospitalHeader: ${appointment.hospital}'),
+                          Text('$doctor: ${appointment.doctor}'),
                         ],
                       ),
                       onTap: () {

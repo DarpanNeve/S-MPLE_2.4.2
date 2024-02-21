@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:medi_connect/src/feature/fcm/notification_initialiser.dart';
 import 'package:medi_connect/src/screens/register/registrations_page.dart';
+import 'package:medi_connect/src/utils/strings_english.dart';
 
 import '../../feature/login/auth_service.dart';
 
@@ -51,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Expanded(
                       child: Text(
-                        'Login for the project',
+                        loginHeader,
                         style:
                             Theme.of(context).textTheme.headlineSmall!.copyWith(
                                   color: Theme.of(context).colorScheme.primary,
@@ -69,12 +70,12 @@ class _LoginPageState extends State<LoginPage> {
                       TextFormField(
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
-                          labelText: 'Email',
+                          labelText: email,
                           icon: Icon(Icons.email),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'Please enter email';
+                            return pleaseEnterName;
                           }
                           return null;
                         },
@@ -88,11 +89,11 @@ class _LoginPageState extends State<LoginPage> {
                         keyboardType: TextInputType.visiblePassword,
                         decoration: InputDecoration(
                           icon: Icon(Icons.lock),
-                          labelText: 'Password',
+                          labelText: password,
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'Please enter password';
+                            return enterPassword;
                           }
                           return null;
                         },
@@ -116,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         icon: Image.asset('assets/Images/google.png'),
                         label: Text(
-                          'Sign in with Google',
+                          signInWithGoogle,
                           style: TextStyle(fontSize: 16),
                         ),
                       ),
@@ -124,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text("Don't have an account? "),
+                          Text(dontHaveAccount),
                           GestureDetector(
                             onTap: () {
                               Navigator.push(
@@ -135,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                               );
                             },
                             child: Text(
-                              'Register now',
+                              registerNow,
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.primary,
                                 fontWeight: FontWeight.bold,

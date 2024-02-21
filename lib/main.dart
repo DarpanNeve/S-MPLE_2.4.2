@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:medi_connect/src/feature/fcm/notification_initialiser.dart';
 import 'package:medi_connect/src/feature/login/auth_service.dart';
+import 'package:medi_connect/src/utils/strings_english.dart';
 import 'package:medi_connect/src/utils/theme_data.dart';
 import 'firebase_options.dart';
 import 'package:location/location.dart';
@@ -66,7 +67,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'MediConnect',
+      title: appName,
       themeMode: ThemeMode.system,
       theme:lightTheme,
       darkTheme: darkTheme,

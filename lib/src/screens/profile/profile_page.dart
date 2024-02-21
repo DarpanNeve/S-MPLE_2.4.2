@@ -8,6 +8,8 @@ import 'package:medi_connect/src/feature/login/auth_service.dart';
 import 'package:medi_connect/src/screens/profile/report_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../utils/strings_english.dart';
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -88,7 +90,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title:  Text(profileHeader),
         actions: [
           IconButton(
             onPressed: () {
@@ -130,10 +132,10 @@ class _ProfilePageState extends State<ProfilePage> {
               onPressed: () {
                 _pickPDF();
               },
-              child: const Column(
+              child: Column(
                 children: [
                   Icon(Icons.cloud_upload),
-                  Text("Add Record"),
+                  Text(addRecord),
                 ],
               ),
             ),
@@ -143,7 +145,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "Past Records",
+                    pastRecords,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ],

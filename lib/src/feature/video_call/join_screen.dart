@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../utils/strings_english.dart';
 import 'api_call.dart';
 import 'meeting_screen.dart';
 
@@ -44,8 +45,8 @@ class _JoinScreenState extends State<JoinScreen> {
         ),
       );
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("Please enter valid meeting id"),
+      ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+        content: Text(enterValidMeetId),
       ));
     }
   }
@@ -66,13 +67,13 @@ class _JoinScreenState extends State<JoinScreen> {
           children: [
             ElevatedButton(
               onPressed: () => onCreateButtonPressed(context),
-              child: const Text('Create Meeting'),
+              child: Text(createMeet),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0, 8.0, 0, 8.0),
               child: TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Meeting Id',
+                decoration:  InputDecoration(
+                  hintText: meetId,
                   border: OutlineInputBorder(),
                 ),
                 controller: _meetingIdController,
@@ -80,7 +81,7 @@ class _JoinScreenState extends State<JoinScreen> {
             ),
             ElevatedButton(
               onPressed: () => onJoinButtonPressed(context),
-              child: const Text('Join Meeting'),
+              child:  Text(joinMeet),
             ),
           ],
         ),
