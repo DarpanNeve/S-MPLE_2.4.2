@@ -36,7 +36,7 @@ class notification {
     ));
   }
 
-  scheduleNotification(DateTime time) async {
+  scheduleNotification(DateTime time,String body,String title,bool repeats) async {
     bool permissions = await AwesomeNotifications().isNotificationAllowed();
     if (!permissions) {
       await AwesomeNotifications().requestPermissionToSendNotifications();
@@ -45,21 +45,22 @@ class notification {
       content: NotificationContent(
         id: time.day,
         channelKey: 'basic_channel',
-        title: justInTime,
+        title: title,
         // body: 'This notification was scheduled to shows at ' +
         //     time.toLocal().toString() +
         //     time.timeZoneName +
         //     '(' +
         //     time.toUtc().toString() +
         //     ' utc)',
-        body: itsTimeForAppointment,
+        body: body,
         wakeUpScreen: true,
         category: NotificationCategory.Reminder,
         notificationLayout: NotificationLayout.BigPicture,
         payload: {'uuid': 'uuid-test'},
         autoDismissible: false,
+
       ),
-      schedule: NotificationCalendar.fromDate(date: time),
+      schedule: NotificationCalendar.fromDate(date: time,repeats: repeats),
     );
   }
 }

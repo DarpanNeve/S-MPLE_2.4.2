@@ -10,6 +10,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../utils/strings_english.dart';
 
+import 'Reminder/add_reminder.dart';
+import 'Reminder/reminder_model.dart';
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -19,7 +22,9 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   List<Report> reports = [];
+  List<Reminder>reminders=[];
   final currentUser = FirebaseAuth.instance.currentUser;
+  final uid=FirebaseAuth.instance.currentUser!.uid;
   Future<void> retrieveAndPrintData() async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection("report_upload")
@@ -39,10 +44,26 @@ class _ProfilePageState extends State<ProfilePage> {
     });
     print(reports);
   }
+  Future<void> retrieveReminders() async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection("reminder")
+        .where('uid', isEqualTo: uid)
+        .get();
+    querySnapshot.docs.forEach((doc) {
+      reminders.add(Reminder(
+        option: doc['option'],
+        time: doc['time'],
+        text: doc['text'],
+      ));
+      print('appointments :${doc.data()}');
+    });
+    setState(() {});
+  }
 
   initState() {
     super.initState();
     retrieveAndPrintData();
+    retrieveReminders();
   }
   _pickPDF() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -100,6 +121,14 @@ class _ProfilePageState extends State<ProfilePage> {
             icon: const Icon(Icons.logout),
           )
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => AddReminder()));
+        },
+        label: Text('Add Reminder'),
+        icon: Icon(Icons.add),
+
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -170,7 +199,35 @@ class _ProfilePageState extends State<ProfilePage> {
                     )
                     .toList(),
               ),
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    "Your Reminders",
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ],
+              ),
+            ),
+            Visibility(
+              visible: reminders.isNotEmpty,
+              child: Column(
+                children: reminders
+                    .map(
+                      (e) => ListTile(
+                    leading: Text(e.option),
+                    title: Text(e.text),
+                    onTap: () async {
+
+                    },
+                  ),
+                )
+                    .toList(),
+              ),
+            ),
           ],
         ),
       ),

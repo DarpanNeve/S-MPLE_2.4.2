@@ -1,12 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:medi_connect/src/feature/fcm/notification.dart';
 import 'package:medi_connect/src/feature/fcm/notification_initialiser.dart';
 import 'package:medi_connect/src/utils/strings_english.dart';
 
-import '../../widget/snackbar.dart';
 
 class BookAppointmentScreen extends StatefulWidget {
   const BookAppointmentScreen({Key? key});
@@ -87,7 +84,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
         'timestamp': appointmentTimestamp,
         'uid':FirebaseAuth.instance.currentUser!.uid,
       });
-      await notification().scheduleNotification(combinedDateTime);
+      await notification().scheduleNotification(combinedDateTime,"It's time for the appointment!","Appointment Reminder",false);
       setState(() {
         _selectedDate = null;
         _selectedTime = null;

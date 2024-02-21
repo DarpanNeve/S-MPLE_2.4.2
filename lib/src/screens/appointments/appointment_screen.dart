@@ -112,7 +112,8 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('$date: ${appointment.date}, $time: ${appointment.time}'),
+                          //Text('Date: ${appointment.date}, Time: ${appointment.time}'),
+                          Text('$date: ${appointment.date.substring(0,10)}'),
                           Text('$hospitalHeader: ${appointment.hospital}'),
                           Text('$doctor: ${appointment.doctor}'),
                         ],
