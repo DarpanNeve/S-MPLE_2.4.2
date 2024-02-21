@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const AppointmentScreen(),
     const EmergencyScreen(),
   ];
-
+  String langaugeCodeMain = 'en';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               DropdownButton<String>(
                 onChanged: (String? languageCode) {
+                  langaugeCodeMain = languageCode!;
                   if (languageCode == 'en') {
                     convertToEnglish();
                   }
@@ -51,6 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text(value),
                   );
                 }).toList(),
+                value: langaugeCodeMain,
               ),
               if (currentUser != null && currentUser!.photoURL != null)
                 GestureDetector(
