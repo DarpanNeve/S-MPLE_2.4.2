@@ -15,7 +15,7 @@ class _AddReminderState extends State<AddReminder> {
   String? _selectedOption;
   TimeOfDay? _selectedTime;
   TextEditingController _textEditingController = TextEditingController();
-
+ DateTime now= DateTime.now();
   Future<void> _selectTime(BuildContext context) async {
     final TimeOfDay? pickedTime = await showTimePicker(
       context: context,
@@ -34,9 +34,9 @@ class _AddReminderState extends State<AddReminder> {
         _textEditingController.text.isNotEmpty) {
       debugPrint('Creating combined DateTime...');
       final DateTime combinedDateTime = DateTime(
-        DateTime.now().year,
-        DateTime.now().month,
-        DateTime.now().day,
+        now.year,
+        now.month,
+        now.day,
         _selectedTime!.hour,
         _selectedTime!.minute,
       );
@@ -55,7 +55,7 @@ class _AddReminderState extends State<AddReminder> {
 
       debugPrint('Scheduling notification...');
       await notification().scheduleNotification(combinedDateTime,
-          _selectedOption!, _textEditingController.text, true);
+          _selectedOption!, _textEditingController.text, false);
 
       setState(() {
         // _selectedTime = null;
