@@ -24,22 +24,7 @@ class _MyAppState extends State<map> {
     _controller.complete(controller);
   }
   void _showHospitalInfoBottomSheet(BuildContext context, Hospital hospital) async{
-    // final snapshot = await FirebaseDatabase.instance.ref(hospital.name).get();
-    // List<Rating> ratings = [];
-    // print('printing from snapshot ${snapshot.value}');
-    // if (snapshot.value != null){
-    //   final List<dynamic>? dataList = snapshot.value as List<dynamic>?;
-    //   if (dataList != null){
-    //     ratings = dataList.map((data) {
-    //       return Rating(
-    //         uid: data['uid'] ?? '',
-    //         userName: data['userName'] ?? '',
-    //         rating: (data['rating'] as num?)?.toDouble() ?? 0.0,
-    //         comment: data['comment'] ?? '',
-    //       );
-    //     }).toList();
-    //   }
-    // }
+
     final snapshot = await FirebaseDatabase.instance.ref(hospital.name).child('ratings').get();
     List<Rating> ratings = [];
     print('printing from snapshot ${snapshot.value}');

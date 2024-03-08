@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<String> _tabs = <String>['Call', 'Appointments'];
   final List<Widget> _pages =<Widget>[
     const Call(),
-    const Appointments(),
+    const Appointments(doctorId: 'abcd',),
   ];
   int _currentIndex = 0;
   final currentUser = FirebaseAuth.instance.currentUser;

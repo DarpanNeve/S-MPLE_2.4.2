@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:medi_connect/src/screens/appointments/appointment_screen.dart';
 import 'package:medi_connect/src/screens/emergency_screen.dart';
 import 'package:medi_connect/src/screens/map/hospital_locator.dart';
-import 'package:medi_connect/src/screens/map/nearby_hospital.dart';
 import 'package:medi_connect/src/screens/profile/profile_page.dart';
 import 'package:medi_connect/src/utils/convertToEnglish.dart';
 import 'package:medi_connect/src/utils/strings_english.dart';
